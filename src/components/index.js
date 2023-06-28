@@ -9,8 +9,10 @@ import ProductVertical from "./ProductVertical";
 import ProductsListHorizontal from "./ProductsListHorizontal";
 import ProductListVertical from "./ProductListVertical";
 import ProductHorizontal from "./ProductHorizontal";
+import CustomNotification from "./CustomNotification";
 
 
 export {CustomText, CustomImage, CustomInput, CustomImageButton,
      CustomButton,CustomHeader, CustomBanner, ProductVertical, 
-     ProductsListHorizontal,ProductListVertical, ProductHorizontal}
+     ProductsListHorizontal,ProductListVertical, ProductHorizontal,
+     CustomNotification}

@@ -1,14 +1,18 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import * as images from '../assets/images'
-import { CustomText, ProductVertical } from './'
-const ProductListVertical = ({ marginTop }) => {
+import CustomText from './CustomText'
+import ProductVertical from './ProductVertical'
+const ProductListVertical = ({ marginTop, noHeader }) => {
     return (
         <>
+            {noHeader!=true?
             <View style={[styles.productHeaderContainer, marginTop != null ? { marginTop: marginTop } : {}]}>
                 <CustomText value={"What you might like"} type={'title1'} />
                 <CustomText value={"See more"} type={'subtitle'} />
             </View>
+            :
+            <></>}
             <ProductVertical imageLink={images.prod4} marginTop={14} />
             <ProductVertical imageLink={images.prod5} marginTop={8} />
             <ProductVertical imageLink={images.prod3} marginTop={8} />

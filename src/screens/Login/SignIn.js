@@ -27,13 +27,13 @@ const Signin = ({navigation}) => {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
             <SafeAreaView style={customStyle.container}>
                 <CustomImage imageLink={images.app_logo} type={'header'} marginTop={103} />
-                <CustomText value={"Welcome to computer store"} type={'title'} marginTop={12}/>
-                <CustomText value={"Sign In to continue"} type={'subtitle'} marginTop={2}/>
+                <CustomText value={"Welcome to computer store"} fontSize={'title'} marginTop={12}/>
+                <CustomText value={"Sign In to continue"} fontSize={'normal'}  textColor={'text_sub'}  marginTop={2}/>
                 <CustomInput imageLink={images.ic_person} placeholder={"Username"} marginTop={50} />
                 <CustomInput imageLink={images.ic_password} placeholder={"Password"} type={'password'} isSecure={true} marginTop={8} />
                 <CustomButton value={'Forgot password?'} type={'tertiary'} onPress={onToForgotPasswordPress} marginTop={16} float={'flex-end'} />
                 <CustomButton value={"Sign In"} type={'primary'} onPress={onSignInPress} marginTop={16} buttonbackground={"submit"}/>
-                <CustomText value={"Or Sign In with"} marginTop={18} />
+                <CustomText value={"Or Sign In with"} fontSize={'subtitle'} marginTop={18} />
                 <CustomButton value={'Google'} type={'social'} onPress={onSocialButtonPress} marginTop={16} imageLink={images.ic_google} />
                 <CustomButton value={'Facebook'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_facebook} />
                 <CustomButton value={'Apple'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_apple} />

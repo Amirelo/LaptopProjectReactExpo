@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet, Text, View, Image } from 'react-native'
+import { Pressable, StyleSheet} from 'react-native'
 import React from 'react'
 import {CustomImage, CustomText} from './';
 
-const CustomButton = ({value, type, marginTop, float, imageLink, onPress}) => {
+const CustomButton = ({value, type, marginTop, float, imageLink, onPress, buttonStyles}) => {
   return (
     <Pressable 
         onPress={onPress}
@@ -10,6 +10,7 @@ const CustomButton = ({value, type, marginTop, float, imageLink, onPress}) => {
             type!=null ? styles[`button_${type}`] : {},
             marginTop!= null ? {marginTop:marginTop} : {},
             float!= null ? {alignSelf:`${float}`}:{},
+            buttonStyles!=null ? buttonStyles:{}
         ]}>
         {type == "social" ?
         <CustomImage imageLink={imageLink} type={'socialIcon'}/> 

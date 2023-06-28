@@ -1,7 +1,8 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import * as images from '../assets/images'
-import { CustomText, ProductHorizontal } from './'
+import CustomText from './CustomText'
+import ProductHorizontal from './ProductHorizontal'
 
 const ProductsListHorizontal = ({marginTop}) => {
     return (

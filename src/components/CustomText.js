@@ -1,13 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import ColorStyles from '../assets/stylesheets/ColorStyles'
+import FontSizeStyles from '../assets/stylesheets/FontSizeStyles'
+import FontWeightStyle from '../assets/stylesheets/FontWeightStyle'
 
-const CustomText = ({value, type, customStyles, marginTop}) => {
+const CustomText = ({value, type, customStyles, marginTop,textColor, fontSize, fontWeight}) => {
   return (
       <Text 
         style={[
-            customStyles, 
             type!=null ? styles[`${type}`]:{},
-            marginTop!= null ? {marginTop:marginTop}: {}
+            marginTop!= null ? {marginTop:marginTop}: {},
+            customStyles, 
+            textColor? ColorStyles[`${textColor}`]:{},
+            fontSize? FontSizeStyles[`${fontSize}`]:{},
+            fontWeight? FontWeightStyle[`${fontWeight}`]:{}
         ]} >{value}</Text>
   )
 }
@@ -21,6 +27,11 @@ const styles = StyleSheet.create({
         color:'#fff',
         fontWeight:'bold',
         textAlign:'center'
+    },
+    header:{
+        fontSize:20,
+        color:'#000',
+        fontWeight:'bold',
     },
     header_fail:{
         fontSize:20,
@@ -55,7 +66,6 @@ const styles = StyleSheet.create({
     },
     subtitle:{
         fontSize:12,
-        color:'#9098B1',
         textAlign:'center'
     },
     prod_header:{

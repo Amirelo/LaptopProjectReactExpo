@@ -1,6 +1,7 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import {CustomImage, CustomImageButton} from './'
+import { StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
+import CustomImage from './CustomImage'
+import CustomImageButton from './CustomImageButton'
 import * as images from '../assets/images'
 
 //const internetImg = {uri:'https://cdn.pixabay.com/photo/2019/07/14/16/29/pen-4337524_1280.jpg'}

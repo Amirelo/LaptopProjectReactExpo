@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import {CustomText, CustomImage} from './'
+import CustomText from './CustomText'
+import CustomImage from './CustomImage'
 
 const ProductHorizontal = ({imageLink}) => {
   return (

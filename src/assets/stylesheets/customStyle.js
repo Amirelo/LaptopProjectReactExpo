@@ -11,6 +11,7 @@ export default CustomStyles = StyleSheet.create({
         
     },
     scrollviewContainer:{
+        width:'100%',
     },
     splashContainer:{
         justifyContent:'center',

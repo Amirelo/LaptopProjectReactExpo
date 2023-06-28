@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 8
     },
     image: {
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
+        marginStart:8
     },
     infoContainer:{
         flex:1

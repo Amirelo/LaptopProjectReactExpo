@@ -20,10 +20,17 @@ export const ic_deactivate = require('./deactivatedaction.png');
 export const ic_search = require('./search.png');
 export const ic_favorite = require('./favorite_border.png');
 export const ic_notification = require('./circle_notifications.png');
+export const ic_view_list = require('./view_list.png');
+export const ic_filter  = require('./filter_list.png');
+export const ic_sort = require('./swap_vert.png');
 
 export const ic_google = require('./google.png');
 export const ic_facebook = require('./facebook.png');
 export const ic_apple = require('./apple.png');
+
+export const ic_home = require('./home.png');
+export const ic_explore = require('./explore.png');
+export const ic_cart = require('./shopping_cart.png')
 
 export const banner = require('./banner.png');
 export const prod1 = require('./prod1.png');

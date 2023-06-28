@@ -1,17 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import * as images from './src/assets/images';
-import { CustomText, CustomImage, CustomInput, CustomButton } from './src/components';
 import { DeactivatedAuthScreen, FailureScreen, ForgotPassword, SignIn, SignUp, SplashScreen, SuccessfulScreen, VerificationScreen } from './src/screens/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
-import { Explore, Home } from './src/screens/Main';
+import { Account, Cart, Explore, Home, NotificationScreen,  } from './src/screens/Main';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Favorite from './src/screens/Main/Favorite';
+
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const HomeStack = () =>{
+    return(
+    <Stack.Navigator initialRouteName='Home'>
+      <Stack.Screen name='Home' options={{headerShown:false}} component={Home}/>
+      <Stack.Screen name='Favorite' component={Favorite}/>
+      <Stack.Screen name='Notification' component={NotificationScreen}/>
+    </Stack.Navigator>
+    )
+  }
+
   return (
     <NavigationContainer>
     {
@@ -27,15 +39,19 @@ export default function App() {
         <Stack.Screen name="Deactivated" component={DeactivatedAuthScreen} />
       </Stack.Navigator>
       :
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name='Home' options={{headerShown:false}} component={Home} />
-        <Stack.Screen name='Explore' component={Explore} />
-      </Stack.Navigator>
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name='Home' options={{headerShown:false, tabBarIcon:()=>{return <Image source={images.ic_home}></Image>}}} component={HomeStack} />
+        <Tab.Screen name='Explore' options={{tabBarIcon:() => {return <Image source={images.ic_explore}></Image>}}} component={Explore} />
+        <Tab.Screen name="Cart" options={{tabBarIcon:()=>{return <Image source={images.ic_cart}></Image>}} } component={Cart}/>
+        <Tab.Screen name="Account" options={{tabBarIcon:()=>{return <Image source={images.ic_person}></Image>}} } component={Account}/>
+      </Tab.Navigator>
     }
     </NavigationContainer > 
 
     
   );
+
+  
 }
 
 

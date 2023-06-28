@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
         width:24,
         height:24,
         marginHorizontal:8,
-        borderTopLeftRadius:9,
-        borderBottomLeftRadius:9,
         position:'absolute'
     },
     productItem:{
@@ -44,4 +42,8 @@ const styles = StyleSheet.create({
         marginTop:16,
         alignSelf:'center'
     },
+    searchBarIcon:{
+        width:24,
+        height:24
+    }
 })
