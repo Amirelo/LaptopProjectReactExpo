@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet} from 'react-native'
 import React from 'react'
-import {CustomImage, CustomText} from './';
+import CustomImage from './CustomImage';
+import CustomText from './CustomText';
 
 const CustomButton = ({value, type, marginTop, float, imageLink, onPress, buttonStyles}) => {
   return (

@@ -4,7 +4,7 @@ import { DeactivatedAuthScreen, FailureScreen, ForgotPassword, SignIn, SignUp, S
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
-import { Account, Cart, Explore, Home, NotificationScreen,  } from './src/screens/Main';
+import { Account, Cart, Explore, Home, NotificationScreen, Profile,  } from './src/screens/Main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favorite from './src/screens/Main/Favorite';
 
@@ -24,6 +24,15 @@ export default function App() {
     )
   }
 
+  const AccountStack = () => {
+    return(
+      <Stack.Navigator initialRouteName='Account'>
+        <Stack.Screen name="Account" component={Account}/>
+        <Stack.Screen name="Profile" component={Profile}/>
+      </Stack.Navigator>
+    )
+  }
+
   return (
     <NavigationContainer>
     {
@@ -39,11 +48,11 @@ export default function App() {
         <Stack.Screen name="Deactivated" component={DeactivatedAuthScreen} />
       </Stack.Navigator>
       :
-      <Tab.Navigator initialRouteName='Home'>
-        <Tab.Screen name='Home' options={{headerShown:false, tabBarIcon:()=>{return <Image source={images.ic_home}></Image>}}} component={HomeStack} />
+      <Tab.Navigator initialRouteName='HomeStack'>
+        <Tab.Screen name='HomeStack' options={{title:"Home",headerShown:false, tabBarIcon:()=>{return <Image source={images.ic_home}></Image>}}} component={HomeStack} />
         <Tab.Screen name='Explore' options={{tabBarIcon:() => {return <Image source={images.ic_explore}></Image>}}} component={Explore} />
         <Tab.Screen name="Cart" options={{tabBarIcon:()=>{return <Image source={images.ic_cart}></Image>}} } component={Cart}/>
-        <Tab.Screen name="Account" options={{tabBarIcon:()=>{return <Image source={images.ic_person}></Image>}} } component={Account}/>
+        <Tab.Screen name="AccountStack" options={{title:"Account", headerShown:false,tabBarIcon:()=>{return <Image source={images.ic_person}></Image>}} }  component={AccountStack}/>
       </Tab.Navigator>
     }
     </NavigationContainer > 

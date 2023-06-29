@@ -1,6 +1,7 @@
 export const app_logo = require('./logo.png');
 export const app_logo_splash = require('./logo_splash.png');
 export const background = require('./background1.jpg');
+export const userImage = require('./userimage.png');
 
 export const ic_person = require('./person.png');
 export const ic_password = require('./password.png');
@@ -8,6 +9,7 @@ export const ic_visibility = require('./visibility.png');
 export const ic_visibility_off = require('./visibility_off.png');
 export const ic_email = require('./email.png');
 export const ic_arrow_down = require('./keyboard_arrow_down.png');
+export const ic_arrow_right = require('./keyboard_arrow_right.png');
 export const ic_calendar = require('./calendar_month.png');
 export const ic_transgender = require("./transgender.png");
 export const ic_work = require("./work.png");
