@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import * as images from '../../assets/images'
-import customStyle from '../../assets/stylesheets/customStyle'
-import { CustomButton, CustomImage, CustomInput, CustomText } from '../../components'
+import * as images from '../../../assets/images'
+import customStyle from '../../../assets/stylesheets/customStyle'
+import { CustomButton, CustomImage, CustomInput, CustomText } from '../../../components'
 
 const VerificationScreen = ({navigation, route}) => {
   const [verifyCode,setVerifyCode] = useState();

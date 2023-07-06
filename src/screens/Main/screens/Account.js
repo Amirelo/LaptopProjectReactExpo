@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import customStyle from '../../assets/stylesheets/customStyle'
-import { AccountTab } from '../../components'
+import customStyle from '../../../assets/stylesheets/customStyle'
+import { AccountTab } from '../../../components'
 
 const Account = ({navigation}) => {
   const onPressUserTab = () => {

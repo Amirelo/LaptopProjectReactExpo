@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import * as images from '../../assets/images'
-import customStyle from '../../assets/stylesheets/customStyle'
-import { CustomButton, CustomInput } from '../../components'
+import * as images from '../../../assets/images'
+import customStyle from '../../../assets/stylesheets/customStyle'
+import { CustomButton, CustomInput } from '../../../components'
 
 const ForgotPassword = ({navigation}) => {
     const [pass,setPass] = useState();

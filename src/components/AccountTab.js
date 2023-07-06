@@ -6,6 +6,7 @@ import FontWeightStyle from '../assets/stylesheets/FontWeightStyle'
 import FontSizeStyles from '../assets/stylesheets/FontSizeStyles'
 import ColorStyles from '../assets/stylesheets/ColorStyles'
 import { ic_arrow_right, prod1, userImage } from '../assets/images'
+import customStyle from '../assets/stylesheets/customStyle'
 
 const AccountTab = ({title, subtitle, onPress, isHighlight, spacingTop, type}) => {
   return (
@@ -13,8 +14,9 @@ const AccountTab = ({title, subtitle, onPress, isHighlight, spacingTop, type}) =
         {type=='usertab' ?
         <CustomImage imageLink={userImage} type={'header'} customStyle={styles.userImage}/>
         :<></>}
+        
         <View style={styles.textContainer}>
-        <CustomText value={title} customStyles={[FontWeightStyle.heavy, FontSizeStyles.title, isHighlight ? ColorStyles.cancel:ColorStyles.text_default]} />
+        <CustomText value={title} customStyles={[FontWeightStyle.heavy, FontSizeStyles.title, isHighlight ? ColorStyles.cancel:ColorStyles.text_default, ]} />
         <CustomText value={subtitle} customStyles={[ColorStyles.text_sub, FontSizeStyles.normal]} marginTop={8}/>
         </View>
         <CustomImage imageLink={ic_arrow_right} />
@@ -48,5 +50,8 @@ const styles = StyleSheet.create({
     },
     textContainer:{
         flex:1
+    },
+    textContainerRow:{
+        flexDirection:'row'
     }
 })

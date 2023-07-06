@@ -1,9 +1,9 @@
 import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import * as images from '../../assets/images'
-import customStyle from '../../assets/stylesheets/customStyle'
-import { CustomBanner, CustomHeader, ProductListVertical, ProductsListHorizontal } from '../../components'
+import * as images from '../../../assets/images'
+import customStyle from '../../../assets/stylesheets/customStyle'
+import { CustomBanner, CustomHeader, ProductListVertical, ProductsListHorizontal } from '../../../components'
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
