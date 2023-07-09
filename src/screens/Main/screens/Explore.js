@@ -9,12 +9,10 @@ const Explore = () => {
   return (
     <SafeAreaView style={customStyle.container}>
             <CustomHeader />
-            <ScrollView style={customStyle.scrollviewContainer} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={customStyle.container}>
                   <CustomText value={'20 result(s)' } type={'header'} customStyles={{alignSelf:'flex-start', marginStart:8}}/>
                     <ProductListVertical marginTop={24} noHeader={true}/>
                 </View>
-            </ScrollView>
         </SafeAreaView>
   )
 }

@@ -40,7 +40,9 @@ const styles = StyleSheet.create({
         height:112,
         resizeMode:'cover',
         marginTop:16,
-        alignSelf:'center'
+        marginHorizontal:8,
+        alignSelf:'center',
+        borderRadius:4
     },
     searchBarIcon:{
         width:24,

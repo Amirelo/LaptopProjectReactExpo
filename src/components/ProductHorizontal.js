@@ -3,40 +3,47 @@ import React from 'react'
 import CustomText from './CustomText'
 import CustomImage from './CustomImage'
 
-const ProductHorizontal = ({imageLink}) => {
-  return (
-    <Pressable style={styles.container}>
+const ProductHorizontal = ({ imageLink, name, curPrice, oldPrice, discount }) => {
+    return (
+        <Pressable style={styles.container}>
             <CustomImage imageLink={imageLink} type={'productItem'} />
-            <CustomText value={'MacBook Air 13 inch M1 2020 7-core GPU'} type={'prod_header'} customStyles={styles.textMargin}/>
-            <CustomText value={'18.390.000đ'} type={'prod_price'}customStyles={styles.textMargin} />
+            <CustomText value={name} type={'prod_header'} maxLines={2} customStyles={styles.textMargin} />
+            <CustomText value={curPrice} type={'prod_price'} customStyles={[styles.textMargin,styles.curPrice]} />
+            {curPrice != oldPrice ?
             <View style={[styles.rowContainer, styles.textMargin]}>
-                <CustomText value={'22.990.000đ'} type={'prod_old_price'} />
-                <CustomText value={'Giảm 20%'} type={'prod_discount'} />
+                <CustomText value={oldPrice} type={'prod_old_price'} />
+                <CustomText value={discount} type={'prod_discount'} />
             </View>
+            :
+            <></>}
         </Pressable>
-  )
+    )
 }
 
 export default ProductHorizontal
 
 const styles = StyleSheet.create({
-    container:{
-        width:'40%',
-        height:245,
-        backgroundColor:'#FBFBFB',
-        borderColor:'#EBF0FF',
-        borderWidth:1,
-        maxWidth:156,
-        borderRadius:4
+    container: {
+        height: 245,
+        backgroundColor: '#FBFBFB',
+        borderColor: '#EBF0FF',
+        borderWidth: 1,
+        maxWidth: 156,
+        borderRadius: 4,
     },
-    rowContainer:{
-        flexDirection:'row',
-        justifyContent:'space-around',
-        alignItems:'center',
+    rowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: 12,
     },
-    textMargin:{
-        marginTop:8,
-        marginHorizontal:8
+    textMargin: {
+        marginTop: 8,
+        marginHorizontal: 8,
+    },
+    curPrice:{
+        alignSelf:'flex-start',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
     }
 })

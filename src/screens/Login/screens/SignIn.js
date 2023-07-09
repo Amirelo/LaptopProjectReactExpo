@@ -15,7 +15,7 @@ const Signin = ({navigation}) => {
 
 
     const onToForgotPasswordPress = () =>{
-        navigation.navigate("Verification", {paramKey: 'changepassword'});
+        navigation.navigate("Verification", {paramKey: 'CHANGEPASSWORD'});
     }
 
     const onSignInPress = async()=> {
@@ -29,7 +29,7 @@ const Signin = ({navigation}) => {
     }
 
     const onToSignUpPress = ()=> {
-        navigation.navigate("Verification", {paramKey:'signup'});
+        navigation.navigate("Verification", {paramKey:'SIGNUP'});
     }
 
     const onSocialButtonPress = () =>{

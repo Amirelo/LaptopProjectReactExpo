@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View, Image, Dimensions } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CustomText from './CustomText'
 
 const deviceWidth = Dimensions.get('window').width

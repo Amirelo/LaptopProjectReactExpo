@@ -4,16 +4,17 @@ import ColorStyles from '../assets/stylesheets/ColorStyles'
 import FontSizeStyles from '../assets/stylesheets/FontSizeStyles'
 import FontWeightStyle from '../assets/stylesheets/FontWeightStyle'
 
-const CustomText = ({value, type, customStyles, marginTop,textColor, fontSize, fontWeight}) => {
+const CustomText = ({value, type, customStyles, marginTop,textColor, fontSize, fontWeight, maxLines,textDecor}) => {
   return (
-      <Text 
+      <Text numberOfLines={maxLines}
         style={[
             type!=null ? styles[`${type}`]:{},
             marginTop!= null ? {marginTop:marginTop}: {},
             customStyles, 
             textColor? ColorStyles[`${textColor}`]:{},
             fontSize? FontSizeStyles[`${fontSize}`]:{},
-            fontWeight? FontWeightStyle[`${fontWeight}`]:{}
+            fontWeight? FontWeightStyle[`${fontWeight}`]:{},
+            textDecor ?{textDecorationLine:`${textDecor}`} :{}
         ]} >{value}</Text>
   )
 }
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     },
     subtitle:{
         fontSize:12,
-        textAlign:'center'
+        textAlign:'center',
+        
     },
     prod_header:{
         fontSize:12,
@@ -77,9 +79,10 @@ const styles = StyleSheet.create({
         fontSize:12,
         color:'#fff',
         fontWeight:'bold',
-        padding:4,
+        paddingHorizontal:8,
+        paddingVertical:4,
         backgroundColor:'#F52D2D',
-        borderRadius:4,
+        borderRadius:2,
     },
     prod_old_price:{
         color: '#9098B1',
