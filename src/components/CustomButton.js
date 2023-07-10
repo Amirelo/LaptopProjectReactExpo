@@ -3,7 +3,7 @@ import React from 'react'
 import CustomImage from './CustomImage';
 import CustomText from './CustomText';
 
-const CustomButton = ({value, type, marginTop, float, imageLink, onPress, buttonStyles}) => {
+const CustomButton = ({value, type, marginTop, float, imageLink, onPress, customStyles}) => {
   return (
     <Pressable 
         onPress={onPress}
@@ -11,7 +11,7 @@ const CustomButton = ({value, type, marginTop, float, imageLink, onPress, button
             type!=null ? styles[`button_${type}`] : {},
             marginTop!= null ? {marginTop:marginTop} : {},
             float!= null ? {alignSelf:`${float}`}:{},
-            buttonStyles!=null ? buttonStyles:{}
+            customStyles!=null ? customStyles:{}
         ]}>
         {type == "social" ?
         <CustomImage imageLink={imageLink} type={'socialIcon'}/> 

@@ -5,5 +5,6 @@ import Account from './Account';
 import Favorite from "./Favorite";
 import NotificationScreen from "./NotificationScreen";
 import Profile from "./Profile";
+import UpdateInfo from "./UpdateInfo";
 
-export {Home, Explore, Cart, Account, Favorite, NotificationScreen, Profile}
+export {Home, Explore, Cart, Account, Favorite, NotificationScreen, Profile, UpdateInfo}

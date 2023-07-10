@@ -3,6 +3,7 @@ import * as images from '../../assets/images';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Cart, Explore, Home, NotificationScreen, Favorite,Profile, Account } from './screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import UpdateInfo from './screens/UpdateInfo';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,7 @@ const MainNavigation = () => {
             <Stack.Navigator initialRouteName='Account'>
                 <Stack.Screen name="Account" component={Account} />
                 <Stack.Screen name="Profile" component={Profile} />
+                <Stack.Screen name="Update User Information" component={UpdateInfo}/>
             </Stack.Navigator>
         )
     }
