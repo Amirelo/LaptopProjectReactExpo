@@ -1,12 +1,23 @@
 import { Context, useState, createContext } from 'react';
+import { FlatList } from 'react-native';
 import axiosInstance from '../../utils/axios';
-import { checkEmail, sendVerificationCode, signIn, signUp, updateUserInfo } from './UserService';
+import { checkEmail, getUserByUsername, sendVerificationCode, signIn, signUp, updateUserInfo } from './UserService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
     const { children } = props;
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const checkSaveUser = async() =>{
+        try{
+        username = await AsyncStorage.getItem('username');
+        username!=null ? setIsLoggedIn(true):{}
+    } catch(error){
+        console.warn("On check save user error", error);
+    }
+    }
 
     const onSignIn = async (username, password) => {
         try {
@@ -67,6 +78,17 @@ export const UserContextProvider = (props) => {
         }
     }
 
+    const onGetUserByUsername = async(username) => {
+        try{
+            const res = await getUserByUsername(username);
+            console.log("On Get User info success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get User info error", error);
+            return null;
+        }
+    }
+
     const getUserAddress = async() => {
         try{
             const res = await getUserAddress();
@@ -100,7 +122,7 @@ export const UserContextProvider = (props) => {
         }
     }
     return (
-        <UserContext.Provider value={{ isLoggedIn, onSignIn, onSignUp, onSendVerificationCode,onUpdateUserInfo,getUserAddress,insertUserAddress,updateUserAddress,onCheckEmail }}>
+        <UserContext.Provider value={{ isLoggedIn, onSignIn, onSignUp, onSendVerificationCode,onUpdateUserInfo,getUserAddress,insertUserAddress,updateUserAddress,onCheckEmail,checkSaveUser,onGetUserByUsername }}>
             {children}
         </UserContext.Provider>
     )

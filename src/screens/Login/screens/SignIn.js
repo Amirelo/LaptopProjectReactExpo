@@ -1,18 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as images from '../../../assets/images';
 import customStyle from '../../../assets/stylesheets/customStyle';
 import { CustomButton, CustomImage, CustomInput, CustomText } from '../../../components';
 import {UserContext} from '../UserContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signin = ({navigation}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
-    const {onSignIn} = useContext(UserContext);
+    const {onSignIn,checkSaveUser} = useContext(UserContext);
 
+    useEffect(()=>{
+        checkSaveUser();
+    })
 
     const onToForgotPasswordPress = () =>{
         navigation.navigate("Verification", {paramKey: 'CHANGEPASSWORD'});
@@ -22,8 +26,9 @@ const Signin = ({navigation}) => {
     const result =  await onSignIn(username,password);
     if(result){
         setError(false);
+        await AsyncStorage.setItem('username',username);
     }
-    if(!result){
+    else{
         setError(true);
     }
     }

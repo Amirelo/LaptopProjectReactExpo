@@ -81,8 +81,13 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         paddingHorizontal:8,
         paddingVertical:4,
-        backgroundColor:'#F52D2D',
-        borderRadius:2,
+        backgroundColor:'#D10B0B',
+        borderRadius:4,
+    },
+    prod_price_nobg:{
+        fontSize:12,
+        color:'#D10B0B',
+        fontWeight:'bold',
     },
     prod_old_price:{
         color: '#9098B1',

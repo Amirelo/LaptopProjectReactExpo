@@ -1,39 +1,49 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View, FlatList } from 'react-native'
 import * as images from '../assets/images'
 import CustomText from './CustomText'
 import ProductHorizontal from './ProductHorizontal'
 import customStyle from '../assets/stylesheets/customStyle'
 
-const ProductsListHorizontal = ({ marginTop, data, type,title }) => {
-    const sortedData = data;
+const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
 
-    const data1 = data.sort((a,b) => {
-        return a.currentPrice - b.currentPrice;
-    })
-
-    const dataSort = () => {
-        if(type == "popular"){
-            sortedData.sort((a,b) => {return b.sold - a.sold;})
-        }
-        if(type == "new"){
-            sortedData.sort((a,b) => a.releasedDate - b.releasedDate)
+    const sortingData = () => {
+        if (data == null) {
+            setTimeout(() => { sortingData }, 1000)
+        } else {
+            switch (type) {
+                case "POPULAR":
+                    data.sort((a, b) => {
+                        return a.totalRating - b.totalRating;
+                    })
+                    return data.slice(0,5);
+                case "NEW":
+                    data.sort((a, b) => {
+                        return a.releasedDate - b.releasedDate;
+                    })
+                    return data.slice(0,5);
+                default:
+                    return data;
+            }
         }
     }
 
+    const sortedData = sortingData();
+
+
     const priceFormat = (price) => {
         const formatter = new Intl.NumberFormat('vi-VN', {
-            style:'currency',
-            currency:'VND'
+            style: 'currency',
+            currency: 'VND'
         });
         return formatter.format(price);
     }
 
     const discountFormat = (discount) => {
-        if(discount.substring(0,1) == '%'){
-            result = discount.substring(1,3) + "% off";
+        if (discount.substring(0, 1) == '%') {
+            result = discount.substring(1, 3) + "% off";
         }
-        if(discount.length == 0){
+        if (discount.length == 0) {
             result = "";
         }
         return result;
@@ -53,15 +63,16 @@ const ProductsListHorizontal = ({ marginTop, data, type,title }) => {
                 marginTop={8}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ justifyContent: 'space-between', gap: 16 }}
-                data={data1.slice(0,5)}
+                data={sortedData}
+                initialNumToRender={3}
                 keyExtractor={item => item.productID}
                 renderItem={({ item }) => {
-                    return <ProductHorizontal 
-                                imageLink={{uri:item.productImageLink}} 
-                                name={item.productName + " " + item.modelCode}
-                                curPrice={priceFormat(item.currentPrice)}
-                                oldPrice={priceFormat(item.productPrice)}
-                                discount={discountFormat(item.onSale)}/>
+                    return <ProductHorizontal
+                        imageLink={{ uri: item.productImageLink }}
+                        name={item.productName + " " + item.modelCode}
+                        curPrice={priceFormat(item.currentPrice)}
+                        oldPrice={priceFormat(item.productPrice)}
+                        discount={discountFormat(item.onSale)} />
                 }} />
         </View>
     )
@@ -75,8 +86,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
     },
-    container:{
-        width:'90%',
-        flex:1
+    container: {
+        width: '90%',
+        flex: 1
     }
 })

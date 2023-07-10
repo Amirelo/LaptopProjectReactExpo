@@ -3,7 +3,7 @@ import React from 'react'
 import CustomText from './CustomText'
 import CustomImage from './CustomImage'
 
-const ProductHorizontal = ({ imageLink, name, curPrice, oldPrice, discount }) => {
+const ProductHorizontal = ({ imageLink, name, curPrice, oldPrice, discount,type }) => {
     return (
         <Pressable style={styles.container}>
             <CustomImage imageLink={imageLink} type={'productItem'} />

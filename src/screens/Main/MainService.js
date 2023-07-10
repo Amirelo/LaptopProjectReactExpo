@@ -58,3 +58,10 @@ export const getAllStorages = async() =>{
     return res;
 }
 
+export const getUserCart = async(username) => {
+    const data = {
+        username:username
+    }
+    const res = await axiosInstance.post('/cart/get-carts-by-username.php',data);
+    return res;
+}

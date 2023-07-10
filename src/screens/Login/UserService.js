@@ -95,6 +95,7 @@ export const getUserCoupon = async(userID) =>{
         userID:userID
     }
     const res = await axiosInstance.post('/coupon/get-coupons-by-userid.php',data);
+    return res;
 }
 
 // Favorite
@@ -103,6 +104,7 @@ export const getUserFavorite = async(userID) =>{
         userID:userID
     }
     const res = await axiosInstance.post('/favorite/get-user-favorite.php',data);
+    return res;
 }
 
 export const updateUserFavoriteStatus = async(favoriteID,userID,isFavorite) => {
@@ -112,6 +114,7 @@ export const updateUserFavoriteStatus = async(favoriteID,userID,isFavorite) => {
         isFavorite:isFavorite
     }
     const res = await axiosInstance.post('/favorite/update-favorite-status.php',data);
+    return res;
 }
 
 // Rating
@@ -120,6 +123,7 @@ export const getProductRatingsBy = async(productID) =>{
         productID:productID
     }
     const res = await axiosInstance.post('/rating/get-product-ratings.php',data);
+    return res;
 }
 
 export const getUserAllRatings = async(userID) =>{
@@ -127,6 +131,7 @@ export const getUserAllRatings = async(userID) =>{
         userID:userID
     }
     const res = await axiosInstance.post('/rating/get-ratings-by-userid.php',data);
+    return res;
 }
 
 export const updateUserRating = async(ratingID,rating,comment,status,userID,productID) =>{
@@ -139,6 +144,7 @@ export const updateUserRating = async(ratingID,rating,comment,status,userID,prod
         productID:productID
     }
     const res = await axiosInstance.post('/rating/update-user-rating.php',data);
+    return res;
 }
 
 export const updateUserRatingStatus = async(ratingID,userID,status) =>{
@@ -148,6 +154,7 @@ export const updateUserRatingStatus = async(ratingID,userID,status) =>{
         status:status
     }
     const res = await axiosInstance.post('/rating/update-user-rating-status.php',data);
+    return res;
 }
 
 export const insertUserRating = async(rating,comment,userID, productID) =>{
@@ -158,11 +165,13 @@ export const insertUserRating = async(rating,comment,userID, productID) =>{
         productID:productID
     }
     const res = await axiosInstance.post('/rating/insert-rating.php',data);
+    return res;
 }
 
 export const getRatingImage = async() =>{
 
     const res = await axiosInstance.get('/ratingImage/get-all-rating-images.php');
+    return res;
 }
 
 export const getRatingImageByRatingID = async(ratingID) =>{
@@ -170,6 +179,7 @@ export const getRatingImageByRatingID = async(ratingID) =>{
         ratingID:ratingID
     }
     const res = await axiosInstance.post('/ratingImage/get-rating-images-by-rating-id.php',data);
+    return res;
 }
 
 
@@ -180,6 +190,7 @@ export const getUserOrders = async(userID) => {
         userID:userID
     }
     const res = await axiosInstance.post('/userOrder/get-user-order-by-userid.php',data);
+    return res;
 }
 
 export const insertUserOrder = async(totalPrice,originalPrice,note,receiver,shippingFee,paymentType,addressID,userID,couponID) => {
@@ -195,6 +206,7 @@ export const insertUserOrder = async(totalPrice,originalPrice,note,receiver,ship
         couponID:couponID
     }
     const res = await axiosInstance.post('/userOrder/insert-user-order.php',data);
+    return res;
 }
 
 export const getUserOrderDetail = async(userOrderID) => {
@@ -202,6 +214,7 @@ export const getUserOrderDetail = async(userOrderID) => {
         userOrderID:userOrderID
     }
     const res = await axiosInstance.post('/orderDetail/get-user-order-detail.php',data);
+    return res;
 }
 
 export const insertUserOrderDetail = async(productQuantity,userOrderID,productID) => {
@@ -211,5 +224,14 @@ export const insertUserOrderDetail = async(productQuantity,userOrderID,productID
         productID:productID
     }
     const res = await axiosInstance.post('/orderDetail/insert-order-detail.php',data);
+    return res;
+}
+
+export const getUserByUsername= async(username) => {
+    const data = {
+        username:username
+    }
+    const res = await axiosInstance.post('/user/get-user-by-username.php',data);
+    return res;
 }
 

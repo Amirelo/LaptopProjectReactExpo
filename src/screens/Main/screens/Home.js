@@ -9,14 +9,7 @@ import { MainContext } from '../MainContext'
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 const Home = ({navigation}) => {
-    const [listProducts, setListProducts] = useState([]);
-    const [listProcessors, setListProcessors] = useState();
-    const [listMemories, setListMemories] = useState();
-    const [listScreens, setListScreens] = useState();
-    const [listStorages, setListStorages] = useState();
-
-    const {onGetAllProduct, onGetAllProcessors, onGetAllMemories, onGetAllScreens,onGetAllStorages} = useContext(MainContext);
-
+    const {listProducts, listProcessors, listMemories, listScreens,listStorages} = useContext(MainContext);
 
     const onToFavoritePress = () =>{
         navigation.navigate('Favorite')
@@ -26,26 +19,6 @@ const Home = ({navigation}) => {
         navigation.navigate('Notification')
     }
 
-    const initProduct = async() => {
-        const productResult = await onGetAllProduct();
-        setListProducts(productResult.data);
-
-        const processorResult = await onGetAllProcessors();
-        setListProcessors(processorResult.data);
-
-        const memoryResult = await onGetAllMemories();
-        setListMemories(memoryResult.data);
-
-        const screenResult = await onGetAllScreens();
-        setListScreens(screenResult.data);
-
-        const storageResult = await onGetAllStorages();
-        setListStorages(storageResult.data);
-    }
-
-    useEffect( () => {
-        initProduct();
-    },[]);
 
     return (
         <SafeAreaView style={customStyle.container}>
@@ -55,9 +28,9 @@ const Home = ({navigation}) => {
                 <View style={customStyle.container}>
                     <CustomBanner imageLink={images.banner} header={"Super Flash Sale"} day={10} hour={3} minute={32} />
                     
-                    <ProductsListHorizontal title={"Popular right now"} marginTop={48} data={listProducts}/>
+                    <ProductsListHorizontal title={"Popular right now"} type={"POPULAR"} marginTop={48} data={listProducts}/>
                     
-                    <ProductsListHorizontal title={"New arrivals"} marginTop={24} data={listProducts}/>
+                    <ProductsListHorizontal title={"New arrivals"}  type={"NEW"} marginTop={24} data={listProducts}/>
 
                     <ProductListVertical marginTop={24} data={[listProducts, listProcessors,listMemories,listScreens, listStorages]}/>
                 </View>

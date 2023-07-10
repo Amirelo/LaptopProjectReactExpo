@@ -1,11 +1,16 @@
 import { View, Text } from 'react-native'
 import React, { createContext, useEffect, useState } from 'react'
-import { getAllProduct, getAllProcessors, getAllProductImages, getAllMemories, getAllScreens, getAllStorages } from './MainService';
+import { getAllProduct, getAllProcessors, getAllProductImages, getAllMemories, getAllScreens, getAllStorages, getUserCart } from './MainService';
 
 export const MainContext = createContext();
 
 export const MainContextProvider = (props) => {
     const {children} = props;
+    const [listProcessors, setListProcessors] = useState();
+    const [listMemories, setListMemories] = useState();
+    const [listScreens, setListScreens] = useState();
+    const [listStorages, setListStorages] = useState();
+    const [listProducts, setListProducts] = useState();
 
     const onGetAllProduct = async() => {
       try{
@@ -67,8 +72,43 @@ export const MainContextProvider = (props) => {
       }
     }
 
+    const onGetUserCart = async(username) => {
+      try{
+        const res = await getUserCart(username);
+        return res.data;
+      } catch(error){
+        console.log("On get user cart error",error);
+        return null;
+      }
+    }
+
+    
+
+    const getAllData = async() => {
+      const processorResult = await onGetAllProcessors();
+      setListProcessors(processorResult.data);
+
+      const productResult = await onGetAllProduct();
+      setListProducts(productResult.data);
+
+      const memoryResult = await onGetAllMemories();
+      setListMemories(memoryResult.data);
+
+      const screenResult = await onGetAllScreens();
+      setListScreens(screenResult.data);
+
+      const storageResult = await onGetAllStorages();
+      setListStorages(storageResult.data);
+
+    }
+
+    useEffect(() =>{
+      getAllData()
+    },[])
+    
+
   return (
-    <MainContext.Provider value={{onGetAllProduct,onGetAllProcessors, onGetAllProductImages,onGetAllMemories,onGetAllScreens,onGetAllStorages}}>
+    <MainContext.Provider value={{listProducts,listProcessors,listMemories, listScreens,listStorages,onGetUserCart}}>
         {children}
     </MainContext.Provider>
   )

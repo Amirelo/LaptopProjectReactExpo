@@ -8,16 +8,20 @@ import ColorStyles from '../assets/stylesheets/ColorStyles'
 import { ic_arrow_right, prod1, userImage } from '../assets/images'
 import customStyle from '../assets/stylesheets/customStyle'
 
-const AccountTab = ({title, subtitle, onPress, isHighlight, spacingTop, type}) => {
+const AccountTab = ({title, subtitle, onPress, isHighlight, spacingTop, type,imageLink}) => {
   return (
     <Pressable style={[styles.container, spacingTop? {marginTop:spacingTop}: {marginTop:12}]} onPress={onPress}>
         {type=='usertab' ?
-        <CustomImage imageLink={userImage} type={'header'} customStyle={styles.userImage}/>
+        <CustomImage imageLink={imageLink} linkType={'uri'} type={'header'} customStyle={styles.userImage}/>
         :<></>}
         
-        <View style={styles.textContainer}>
+        <View style={[styles.textContainer,type=="profile"?styles.profileContainer:{}]}>
         <CustomText value={title} customStyles={[FontWeightStyle.heavy, FontSizeStyles.title, isHighlight ? ColorStyles.cancel:ColorStyles.text_default, ]} />
+        {type=="profile" ?
+        <CustomText value={subtitle} customStyles={[ColorStyles.text_sub, FontSizeStyles.normal]}/>
+        :
         <CustomText value={subtitle} customStyles={[ColorStyles.text_sub, FontSizeStyles.normal]} marginTop={8}/>
+    }
         </View>
         <CustomImage imageLink={ic_arrow_right} />
     </Pressable>
@@ -39,7 +43,11 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center'
     },
-    
+    profileContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
     image:{
         position:'absolute',
         alignSelf:'flex-end',
