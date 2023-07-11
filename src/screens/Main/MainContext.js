@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { createContext, useEffect, useState } from 'react'
-import { getAllProduct, getAllProcessors, getAllProductImages, getAllMemories, getAllScreens, getAllStorages, getUserCart } from './MainService';
+import { getAllProduct, getAllProcessors, getAllProductImages, 
+  getAllMemories, getAllScreens, getAllStorages, getUserCart,getProductByID } from './MainService';
 
 export const MainContext = createContext();
 
@@ -18,6 +19,16 @@ export const MainContextProvider = (props) => {
         return res.data;
       } catch(error){
         console.log("On get all product error", error);
+        return null;
+      }
+    }
+
+    const onGetProductByID = async(productID) => {
+      try{
+        const res = await getProductByID(productID);
+        return res.data;
+      } catch(error){
+        console.log("On get product by id error", error);
         return null;
       }
     }
@@ -108,7 +119,8 @@ export const MainContextProvider = (props) => {
     
 
   return (
-    <MainContext.Provider value={{listProducts,listProcessors,listMemories, listScreens,listStorages,onGetUserCart}}>
+    <MainContext.Provider value={{listProducts,listProcessors,listMemories, 
+    listScreens,listStorages,onGetUserCart,onGetProductByID}}>
         {children}
     </MainContext.Provider>
   )

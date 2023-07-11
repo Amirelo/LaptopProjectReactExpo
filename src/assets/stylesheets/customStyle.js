@@ -33,6 +33,20 @@ export default CustomStyles = StyleSheet.create({
     },
     button_review:{
         backgroundColor: '#C4C805'
-    }
+    },
+    rowContainer:{
+        width:'100%',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
+    itemRow:{
+        flexDirection:'row',
+        alignItems:'center',
+    },
+    itemTextMargin: {
+        marginTop: 8,
+        marginHorizontal: 8
+    },
    
 })

@@ -9,7 +9,7 @@ export const getProductByID = async(productID) => {
     const data = {
         productID:productID
     }
-    const res = await axiosInstance.post('/product/get-all-product.php', data)
+    const res = await axiosInstance.post('/product/get-product-by-id.php', data)
     return res;
 }
 

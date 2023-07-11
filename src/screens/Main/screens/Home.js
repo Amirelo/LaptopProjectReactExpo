@@ -20,6 +20,7 @@ const Home = ({navigation}) => {
     }
 
 
+
     return (
         <SafeAreaView style={customStyle.container}>
             <CustomHeader type={'home'} onFavoritePress={onToFavoritePress} onNotificationPress={onToNotificationPress}/>

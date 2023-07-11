@@ -1,7 +1,9 @@
 import { Context, useState, createContext } from 'react';
 import { FlatList } from 'react-native';
 import axiosInstance from '../../utils/axios';
-import { checkEmail, getUserByUsername, sendVerificationCode, signIn, signUp, updateUserInfo } from './UserService';
+import { checkEmail, getUserByUsername, sendVerificationCode, 
+    signIn, signUp, updateUserInfo,getUserAddress, 
+    getUserOrders, getUserOrderDetail } from './UserService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const UserContext = createContext();
@@ -44,6 +46,11 @@ export const UserContextProvider = (props) => {
             return null;
         }
     }
+
+    const onSignOut = async() => {
+        await AsyncStorage.clear();
+        setIsLoggedIn(false);
+    } 
 
     const onSendVerificationCode = async (email) => {
         try {
@@ -89,9 +96,9 @@ export const UserContextProvider = (props) => {
         }
     }
 
-    const getUserAddress = async() => {
+    const onGetUserAddress = async(username) => {
         try{
-            const res = await getUserAddress();
+            const res = await getUserAddress(username);
             console.log("On Get User Address success", res.data);
             return res.data;
         } catch(error){
@@ -121,8 +128,35 @@ export const UserContextProvider = (props) => {
             return null;
         }
     }
+
+    const onGetUserOrder = async(userID) =>{
+        try{
+            const res = await getUserOrders(userID);
+            console.log("On Get User Order success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get User Order error", error);
+            return null;
+        }
+    }
+
+    const onGetUserOrderDetail = async(userOrderID) =>{
+        try{
+            const res = await getUserOrderDetail(userOrderID);
+            console.log("On Get Order Detail success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get Order Detail error", error);
+            return null;
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ isLoggedIn, onSignIn, onSignUp, onSendVerificationCode,onUpdateUserInfo,getUserAddress,insertUserAddress,updateUserAddress,onCheckEmail,checkSaveUser,onGetUserByUsername }}>
+        <UserContext.Provider 
+        value={{ isLoggedIn, onSignIn, onSignUp, onSignOut, onSendVerificationCode,
+        onUpdateUserInfo,onGetUserAddress,insertUserAddress,updateUserAddress,
+        onCheckEmail,checkSaveUser,onGetUserByUsername,onGetUserOrder,
+        onGetUserOrderDetail }}>
             {children}
         </UserContext.Provider>
     )

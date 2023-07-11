@@ -24,7 +24,7 @@ export default CustomBanner
 
 const styles = StyleSheet.create({
     container: {
-        width: 343,
+        width: '90%',
         height: 206,
         borderRadius: 16,
     },

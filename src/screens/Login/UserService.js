@@ -56,11 +56,11 @@ export const updateUserInfo = async(data,email,type) => {
 }
 
 // Address
-export const getUserAddress = async(userID) => {
+export const getUserAddress = async(username) => {
     const data = {
-        userID:userID
+        username:username
     }
-    const res =await axiosInstance.post('/address/get-addresses-by-userid.php',data);
+    const res =await axiosInstance.post('/address/get-addresses-by-username.php',data);
     return res;
 }
 

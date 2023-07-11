@@ -4,7 +4,8 @@ import CustomImage from './CustomImage'
 import CustomText from './CustomText'
 
 const deviceWidth = Dimensions.get("window").width;
-const ProductVertical = ({ imageLink, marginTop, name, curPrice, oldPrice, processor,memory,screen,storage }) => {
+const ProductVertical = ({ imageLink, marginTop, name, curPrice, oldPrice, 
+    processor,memory,screen,storage }) => {
 
     const dataCheck = (data,type) => {
         if(data==null){

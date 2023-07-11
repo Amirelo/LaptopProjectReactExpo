@@ -9,26 +9,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Profile = ({ route, navigation }) => {
   const { userInfo } = route.params;
-  const [isLoading, setIsLoading]= useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onGoBack = (data, type) => {
     setIsLoading(true);
     switch (type) {
       case "USERNAME":
         userInfo.username = data;
-        console.warn(userInfo)
+        break;
+      case "FULLNAME":
+        userInfo.fullname = data;
+        break;
+      case "IMAGELINK":
+        userInfo.imageLink = data;
+        break;
+      case "BIRTHDAY":
+        userInfo.birthday = data;
+        break;
+      case "GENDER":
+        userInfo.gender = data;
+        break;
+      case "EMAIL":
+        userInfo.email = data;
+        break;
+      case "STATUS":
+        userInfo.status = data;
+        break;
+      case "PHONENUMBER":
+        userInfo.phonenumber = data;
         break;
       default:
         break;
 
     }
     setIsLoading(false);
+    route.params.onGoBackAccount(userInfo);
   }
 
   useEffect(() => {
+    console.warn("resfresh");
     onGoBack();
-    console.warn("resfresh")
-  }, [navigation])
+
+  }, [])
 
   const onAccountTabPressed = (type) => {
     navigation.navigate("Update User Information",
@@ -37,17 +59,17 @@ const Profile = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={customStyle.container}>
-      {isLoading==false?
-      <>
-      <CustomImageButton imageLink={userInfo.imageLink} linkType={'uri'} type={'logo'} customStyles={styles.userImage} />
+      {isLoading == false ?
+        <>
+          <CustomImageButton imageLink={userInfo.imageLink} linkType={'uri'} type={'logo'} customStyles={styles.userImage} />
 
-      <AccountTab type={'profile'} onPress={() => onAccountTabPressed("USERNAME")} title={"Username"} subtitle={ userInfo.username} />
-      <AccountTab type={'profile'} onPress={() => onAccountTabPressed("EMAIL")} title={"Email"} subtitle={userInfo.email} />
-      <AccountTab type={'profile'} onPress={() => onAccountTabPressed("PHONENUMBER")} title={"Phone number"} subtitle={userInfo.phonenumber} />
-      <AccountTab type={'profile'} onPress={() => onAccountTabPressed("BIRTHDAY")} title={"Birthday"} subtitle={userInfo.birthday} />
-      <AccountTab type={'profile'} onPress={() => onAccountTabPressed("GENDER")} title={"Gender"} subtitle={userInfo.gender} />
-      </>
-      :<></>}
+          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("USERNAME")} title={"Username"} subtitle={userInfo.username} />
+          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("EMAIL")} title={"Email"} subtitle={userInfo.email} />
+          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("PHONENUMBER")} title={"Phone number"} subtitle={userInfo.phonenumber} />
+          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("BIRTHDAY")} title={"Birthday"} subtitle={userInfo.birthday} />
+          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("GENDER")} title={"Gender"} subtitle={userInfo.gender} />
+        </>
+        : <></>}
     </SafeAreaView>
   )
 }

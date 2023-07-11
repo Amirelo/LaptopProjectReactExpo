@@ -9,7 +9,6 @@ const Favorite = () => {
     return (
         <ScrollView style={customStyle.scrollviewContainer} showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
             <SafeAreaView style={customStyle.container}>
-                <ProductListVertical marginTop={24} noHeader={true} />
             </SafeAreaView>
         </ScrollView>
     )

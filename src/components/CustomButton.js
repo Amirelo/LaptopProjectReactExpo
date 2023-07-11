@@ -49,12 +49,25 @@ const styles = StyleSheet.create({
         borderRadius:10
         
     },
+    button_in_tab:{
+        width:80,
+        height: 40,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:4,
+        backgroundColor:'#02A9F7'
+    },
     text_social:{
         flex:1,
         textAlign:'center'
     },
     text_primary:{
         fontSize:14,
+        color:'#fff',
+        fontWeight:'bold'
+    },
+    text_in_tab:{
+        fontSize:12,
         color:'#fff',
         fontWeight:'bold'
     }

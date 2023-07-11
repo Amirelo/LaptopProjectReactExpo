@@ -10,6 +10,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const UpdateInfo = ({route,navigation}) => {
     const{email, type} = route.params;
     const [data,setData] = useState();
+    inputType = "none";
+    switch(type){
+      case "PHONENUMBER":
+        inputType="numeric";
+    }
 
     const {onUpdateUserInfo} = useContext(UserContext);
 
@@ -28,7 +33,7 @@ const UpdateInfo = ({route,navigation}) => {
 
   return (
     <SafeAreaView style={customStyle.container}>
-    <CustomInput onChangeText={setData} placeholder={type.toLowerCase()} marginTop={103}/>
+    <CustomInput onChangeText={setData} placeholder={type.toLowerCase()} marginTop={103} keyboardType={inputType}/>
       <CustomButton value={`Change ${type.toLowerCase()}`} onPress={onChangeButtonPresses} type={'primary'}  marginTop={60}/>
     </SafeAreaView>
   )

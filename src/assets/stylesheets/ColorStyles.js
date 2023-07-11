@@ -23,6 +23,9 @@ const ColorStyles = StyleSheet.create({
     review:{
         color:'#C4C805'
     },
+    processing:{
+        color:'#0F01B5'
+    },
     background_review:{
         backgroundColor:'#C4C805'
     },
