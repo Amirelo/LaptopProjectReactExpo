@@ -1,9 +1,10 @@
 import { Text, View, Image } from 'react-native';
 import * as images from '../../assets/images';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Cart, Explore, Home, NotificationScreen, Favorite,Profile, Account, ShippingAddress, Order, OrderDetail } from './screens';
+import { Cart, Explore, Home, NotificationScreen, Favorite,Profile, Account, ShippingAddress, Order, OrderDetail, CardScreen } from './screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import UpdateInfo from './screens/UpdateInfo';
+import PromoCodeScreen from './screens/PromoCodeScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,8 @@ const MainNavigation = () => {
                 <Stack.Screen name="Shipping Address" component={ShippingAddress}/>
                 <Stack.Screen name="Order" component={Order}/>
                 <Stack.Screen name="Order Detail" component={OrderDetail}/>
+                <Stack.Screen name="Promocodes" component={PromoCodeScreen}/>
+                <Stack.Screen name="User Cards" component={CardScreen}/>
             </Stack.Navigator>
         )
     }

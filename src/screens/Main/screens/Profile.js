@@ -29,9 +29,6 @@ const Profile = ({ route, navigation }) => {
       case "GENDER":
         userInfo.gender = data;
         break;
-      case "EMAIL":
-        userInfo.email = data;
-        break;
       case "STATUS":
         userInfo.status = data;
         break;
@@ -64,7 +61,6 @@ const Profile = ({ route, navigation }) => {
           <CustomImageButton imageLink={userInfo.imageLink} linkType={'uri'} type={'logo'} customStyles={styles.userImage} />
 
           <AccountTab type={'profile'} onPress={() => onAccountTabPressed("USERNAME")} title={"Username"} subtitle={userInfo.username} />
-          <AccountTab type={'profile'} onPress={() => onAccountTabPressed("EMAIL")} title={"Email"} subtitle={userInfo.email} />
           <AccountTab type={'profile'} onPress={() => onAccountTabPressed("PHONENUMBER")} title={"Phone number"} subtitle={userInfo.phonenumber} />
           <AccountTab type={'profile'} onPress={() => onAccountTabPressed("BIRTHDAY")} title={"Birthday"} subtitle={userInfo.birthday} />
           <AccountTab type={'profile'} onPress={() => onAccountTabPressed("GENDER")} title={"Gender"} subtitle={userInfo.gender} />

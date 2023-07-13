@@ -235,3 +235,11 @@ export const getUserByUsername= async(username) => {
     return res;
 }
 
+export const getUserCards = async(userID) => {
+    const data = {
+        userID:userID
+    }
+    const res = await axiosInstance.post('/card/get-cards-by-userid.php',data);
+    return res;
+}
+

@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import axiosInstance from '../../utils/axios';
 import { checkEmail, getUserByUsername, sendVerificationCode, 
     signIn, signUp, updateUserInfo,getUserAddress, 
-    getUserOrders, getUserOrderDetail } from './UserService';
+    getUserOrders, getUserOrderDetail, getUserCoupon, getUserCards } from './UserService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const UserContext = createContext();
@@ -151,12 +151,34 @@ export const UserContextProvider = (props) => {
         }
     }
 
+    const onGetUserCoupon = async(userID) => {
+        try{
+            const res = await getUserCoupon(userID);
+            console.log("On Get user coupon success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get user coupon error", error);
+            return null;
+        }
+    }
+
+    const onGetUserCards = async(userID) => {
+        try{
+            const res = await getUserCards(userID);
+            console.log("On Get user coupon success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get user coupon error", error);
+            return null;
+        }
+    }
+
     return (
         <UserContext.Provider 
         value={{ isLoggedIn, onSignIn, onSignUp, onSignOut, onSendVerificationCode,
         onUpdateUserInfo,onGetUserAddress,insertUserAddress,updateUserAddress,
         onCheckEmail,checkSaveUser,onGetUserByUsername,onGetUserOrder,
-        onGetUserOrderDetail }}>
+        onGetUserOrderDetail,onGetUserCoupon,onGetUserCards }}>
             {children}
         </UserContext.Provider>
     )

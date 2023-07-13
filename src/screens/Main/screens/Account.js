@@ -8,10 +8,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dataCheck } from '../../../utils/helper'
 
 const Account = ({ route, navigation }) => {
-  const { onGetUserByUsername,onGetUserAddress, onGetUserOrder, onSignOut } = useContext(UserContext);
+  const { onGetUserByUsername,onGetUserAddress, onGetUserOrder, onSignOut,onGetUserCoupon,onGetUserCards } = useContext(UserContext);
   const [userData, setUserData] = useState();
   const [userAddresses, setUserAddresses] = useState();
   const [userOrders, setUserOrders] = useState();
+  const [userPromoCodes, setUserPromoCodes] = useState();
+  const [userCards, setUserCards] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const getUserInfo = async () => {
@@ -23,6 +25,12 @@ const Account = ({ route, navigation }) => {
     setUserAddresses(userAddress.data);
     const userOrder = await onGetUserOrder(userInfo.data.userId);
     setUserOrders(userOrder.data)
+
+    const userCoupon = await onGetUserCoupon(userInfo.data.userId);
+    setUserPromoCodes(userCoupon.data);
+
+    const userCard = await onGetUserCards(userInfo.data.userId);
+    setUserCards(userCard.data);
   }
 
   const onGoBackAccount = (data) => {
@@ -48,9 +56,22 @@ const Account = ({ route, navigation }) => {
     navigation.navigate("Order",{userInfo:userData,userOrders:userOrders});
   }
 
+  const onChangePasswordPressed = () => {
+    navigation.navigate('Update User Information',{email:userData.email, type:"PASSWORD"});
+  }
+
+  const onPromoCodesScreenPressed = () => {
+    navigation.navigate("Promocodes",{userInfo:userData,userPromoCodes:userPromoCodes});
+  }
+
+  const onCardScreenPressed = () => {
+    navigation.navigate("User Cards",{userCards:userCards});
+  }
+
   const onSignOutPressed = () => {
     onSignOut();
   }
+
   return (
 
     <SafeAreaView style={customStyle.container}>
@@ -60,9 +81,9 @@ const Account = ({ route, navigation }) => {
           <ScrollView style={customStyle.scrollviewContainer} contentContainerStyle={{ paddingBottom: 30, backgroundColor: 'white', alignItems: 'center' }}>
             <AccountTab title={"My order"} subtitle={"12 orders in progress"} onPress={onMyOrderPressed} />
             <AccountTab title={"Shipping address"} subtitle={"3 addresses"} onPress={onShippingAddressPress} />
-            <AccountTab title={"Payment methods"} subtitle={"Union"} />
-            <AccountTab title={"Promocodes"} subtitle={"3 promocodes available"} />
-            <AccountTab title={"Change password"} subtitle={"Change your password"} isHighlight={true} />
+            <AccountTab title={"Payment methods"} subtitle={"Union"} onPress={onCardScreenPressed} />
+            <AccountTab title={"Promocodes"} subtitle={"3 promocodes available"} onPress={onPromoCodesScreenPressed} />
+            <AccountTab title={"Change password"} subtitle={"Change your password"} onPress={onChangePasswordPressed} isHighlight={true} />
             <AccountTab title={"Logout"} subtitle={"Logout of your account"} onPress={onSignOutPressed} isHighlight={true} />
           </ScrollView>
         </>

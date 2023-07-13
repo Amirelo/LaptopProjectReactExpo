@@ -1,5 +1,3 @@
-
-
 export const priceFormat = (price) => {
     const formatter = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
@@ -24,4 +22,9 @@ export const dataCheck = (data,type) => {
     } else{
         return data[type];
     }
+}
+
+export const promoDetail = (percentOff, maxEffect) => {
+    let result = percentOff.slice(1,3)+percentOff.slice(0,1)+" off all laptop, maximum " + priceFormat(maxEffect);
+    return result;
 }

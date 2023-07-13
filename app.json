@@ -20,11 +20,19 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#ffffff",
+        "googleServicesFile": "./google-services.json"
+      },
+      "package": "com.trandang210799.DuAnApp"
     },
+    "plugins": ["@react-native-google-signin/google-signin"],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "490f9463-d5f1-4420-a95f-c7707fe80f1c"
+      }
     }
   }
 }
