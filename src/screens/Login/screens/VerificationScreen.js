@@ -71,7 +71,6 @@ const VerificationScreen = ({ navigation, route }) => {
           <CustomButton value={"Send"} type={'primary'} onPress={onSendPress} marginTop={261} />
           <CustomText value={"Or Sign Up with"} marginTop={18} />
           <CustomButton value={'Google'} type={'social'} onPress={onSocialButtonPress} marginTop={16} imageLink={images.ic_google} />
-          <CustomButton value={'Facebook'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_facebook} />
           <CustomButton value={'Apple'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_apple} />
 
           <CustomButton value={"Already have an account? Sign In here"} onPress={onToSignInPress} type={'tertiary'} marginTop={24} />

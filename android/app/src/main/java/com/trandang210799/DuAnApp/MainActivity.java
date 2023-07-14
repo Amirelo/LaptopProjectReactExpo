@@ -1,4 +1,4 @@
-package com.duanapp;
+package com.trandang210799.DuAnApp;
 
 import android.os.Build;
 import android.os.Bundle;

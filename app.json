@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme":"DuAnApp",
     "name": "DuAnApp",
     "slug": "DuAnApp",
     "version": "1.0.0",
@@ -15,17 +16,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier":"com.trandang210799.DuAnApp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "googleServicesFile": "./google-services.json"
+        "backgroundColor": "#ffffff"
       },
+      
       "package": "com.trandang210799.DuAnApp"
     },
-    "plugins": ["@react-native-google-signin/google-signin"],
     "web": {
       "favicon": "./assets/favicon.png"
     },
@@ -34,5 +35,6 @@
         "projectId": "490f9463-d5f1-4420-a95f-c7707fe80f1c"
       }
     }
+    
   }
 }

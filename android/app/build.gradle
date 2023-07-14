@@ -113,13 +113,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.duanapp"
+    namespace 'com.trandang210799.DuAnApp'
     defaultConfig {
-        applicationId "com.duanapp"
+        applicationId 'com.trandang210799.DuAnApp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     splits {

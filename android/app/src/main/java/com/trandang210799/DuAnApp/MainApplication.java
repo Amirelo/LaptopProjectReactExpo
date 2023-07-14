@@ -1,4 +1,4 @@
-package com.duanapp;
+package com.trandang210799.DuAnApp;
 
 import android.app.Application;
 import android.content.res.Configuration;

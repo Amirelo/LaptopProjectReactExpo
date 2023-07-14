@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">DuAnApp</string>
+  <string name="app_name">DuAnApp</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="facebook_app_id">297180516005391</string>
+  <string name="facebook_client_token">beac26610c7ebe1bcf1470ef1610fa4d</string>
+  <string name="fb_login_protocol_scheme">DuAnApp</string>
 </resources>

@@ -15,8 +15,14 @@ const SignUp = ({navigation, route}) => {
     const [birthday, setBirthday] = useState();
     const [gender, setGender] = useState();
     const [error, setError] = useState(false);
-
-    const {email} = route.params;
+    const {email} = null;
+    if(route.params.email!="undefined"){
+        console.warn("Have Email")
+        email = route.params;
+    }else{
+        console.warn("undefined")
+    }
+     
 
     const { onSignUp } = useContext(UserContext);
 
@@ -51,7 +57,7 @@ const SignUp = ({navigation, route}) => {
                 <CustomInput imageLink={images.ic_person} placeholder={"Username"} onChangeText={setUsername} marginTop={103} />
                 <CustomInput imageLink={images.ic_person} placeholder={"Fullname"} onChangeText={setFullName} marginTop={8} />
                 <CustomInput imageLink={images.ic_password} placeholder={"Password"} marginTop={8} type={'password'} onChangeText={setPassword} isSecure={true} />
-                <CustomInput imageLink={images.ic_password} placeholder={"Confirm Password"} marginTop={8} type={'password'} onChangeText={setConfirmPassword} isSecure={true} />
+                <CustomInput imageLink={images. ic_password} placeholder={"Confirm Password"} marginTop={8} type={'password'} onChangeText={setConfirmPassword} isSecure={true} />
                 <CustomInput imageLink={images.ic_phone} placeholder={"Phone number"} onChangeText={setPhoneNumber} marginTop={8} />
                 <CustomInput imageLink={images.ic_calendar} placeholder={"Birthday"} onChangeText={setBirthday} marginTop={8} />
                 <CustomInput imageLink={images.ic_transgender} placeholder={"Gender"} onChangeText={setGender} marginTop={8} />

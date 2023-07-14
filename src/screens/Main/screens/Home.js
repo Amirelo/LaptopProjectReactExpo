@@ -8,6 +8,7 @@ import { MainContext } from '../MainContext'
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
+
 const Home = ({navigation}) => {
     const {listProducts, listProcessors, listMemories, listScreens,listStorages} = useContext(MainContext);
 

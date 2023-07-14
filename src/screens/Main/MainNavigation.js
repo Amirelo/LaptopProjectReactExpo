@@ -37,10 +37,10 @@ const MainNavigation = () => {
 
     return (
         <Tab.Navigator initialRouteName='HomeStack'>
-            <Tab.Screen name='HomeStack' options={{ title: "Home", headerShown: false, tabBarIcon: () => { return <Image source={images.ic_home}></Image> } }} component={HomeStack} />
-            <Tab.Screen name='Explore' options={{ tabBarIcon: () => { return <Image source={images.ic_explore}></Image> } }} component={Explore} />
-            <Tab.Screen name="Cart" options={{ tabBarIcon: () => { return <Image source={images.ic_cart}></Image> } }} component={Cart} />
-            <Tab.Screen name="AccountStack" options={{ title: "Account", headerShown: false, tabBarIcon: () => { return <Image source={images.ic_person}></Image> } }} component={AccountStack} />
+            <Tab.Screen name='HomeStack' options={{ title: "Home", headerShown: false, tabBarActiveTintColor:"#02A9F7", tabBarIcon: () => { return <Image source={images.ic_home}></Image> } }} component={HomeStack} />
+            <Tab.Screen name='Explore' options={{tabBarActiveTintColor:"#02A9F7", tabBarIcon: () => { return <Image source={images.ic_explore}></Image> } }} component={Explore} />
+            <Tab.Screen name="Cart" options={{tabBarActiveTintColor:"#02A9F7", tabBarIcon: () => { return <Image source={images.ic_cart}></Image> } }} component={Cart} />
+            <Tab.Screen name="AccountStack" options={{tabBarActiveTintColor:"#02A9F7",  title: "Account", headerShown: false, tabBarIcon: () => { return <Image source={images.ic_person}></Image> } }} component={AccountStack} />
         </Tab.Navigator>
     )
 }
