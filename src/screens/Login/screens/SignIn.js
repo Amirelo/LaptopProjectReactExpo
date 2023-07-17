@@ -21,7 +21,7 @@ const Signin = ({ navigation }) => {
     })
     //DuAnApp://expo-development-client/?url=https://u.expo.dev/490f9463-d5f1-4420-a95f-c7707fe80f1c?channel-name=trandang210799
 
-
+    const { onSignIn, checkSaveUser,onGoogleSignIn } = useContext(UserContext);
     const getUserInfo = async () => {
         try {
             const respone = await fetch(
@@ -32,13 +32,12 @@ const Signin = ({ navigation }) => {
                 }
             );
             const user = await respone.json();
-            console.warn("Get user", user)
             checkEmailResult = await checkEmail(user.email, "SIGNUP");
-            console.warn("Check email result:",checkEmailResult.data);
             if (checkEmailResult.data.response_code == 0) {
-                onSignInPress();
+                await AsyncStorage.setItem('email', user.email);
+                onGoogleSignIn();
             } else {
-                navigation.navigate("Sign Up", { email: user.email, userData: user })
+                navigation.navigate("Sign Up", {email: user.email, userData: user })
             }
 
         } catch (error) {
@@ -46,7 +45,7 @@ const Signin = ({ navigation }) => {
         }
     }
 
-    const { onSignIn, checkSaveUser } = useContext(UserContext);
+    
 
     useEffect(() => {
         checkSaveUser();
@@ -63,9 +62,9 @@ const Signin = ({ navigation }) => {
 
     const onSignInPress = async () => {
         const result = await onSignIn(username, password);
-        if (result) {
+        if (result.response_code == 1) {
             setError(false);
-            await AsyncStorage.setItem('username', username);
+            await AsyncStorage.setItem("email", result.data.email)
         }
         else {
             setError(true);

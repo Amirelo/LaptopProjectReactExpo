@@ -8,7 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dataCheck } from '../../../utils/helper'
 
 const Account = ({ route, navigation }) => {
-  const { onGetUserByUsername,onGetUserAddress, onGetUserOrder, onSignOut,onGetUserCoupon,onGetUserCards } = useContext(UserContext);
+  const { onGetUserByUsername,onGetUserAddress, 
+    onGetUserOrder, onSignOut,onGetUserCoupon,
+    onGetUserCards, onGetUserByEmail, onGetAddressesByEmail } = useContext(UserContext);
   const [userData, setUserData] = useState();
   const [userAddresses, setUserAddresses] = useState();
   const [userOrders, setUserOrders] = useState();
@@ -17,11 +19,11 @@ const Account = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getUserInfo = async () => {
-    username = await AsyncStorage.getItem('username');
-    const userInfo = await onGetUserByUsername(username);
+    email = await AsyncStorage.getItem('email');
+    const userInfo = await onGetUserByEmail(email);
     setUserData(userInfo.data);
 
-    const userAddress = await onGetUserAddress(username);
+    const userAddress = await onGetAddressesByEmail(email);
     setUserAddresses(userAddress.data);
     const userOrder = await onGetUserOrder(userInfo.data.userId);
     setUserOrders(userOrder.data)

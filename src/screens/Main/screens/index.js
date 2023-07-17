@@ -10,7 +10,10 @@ import ShippingAddress from "./ShippingAddress";
 import Order from "./Order";
 import OrderDetail from "./OrderDetail";
 import CardScreen from "./CardScreen";
+import ProductDetailScreen from "./ProductDetailScreen";
+import CartRecipientScreen from "./CartRecipientScreen";
 
 export {Home, Explore, Cart, Account, Favorite, 
     NotificationScreen, Profile, UpdateInfo,
-    ShippingAddress,Order,OrderDetail,CardScreen}
+    ShippingAddress,Order,OrderDetail,CardScreen,ProductDetailScreen,
+    CartRecipientScreen}

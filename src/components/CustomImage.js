@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         marginEnd: 12,
         borderTopLeftRadius: 9,
         borderBottomLeftRadius: 9,
+        resizeMode:'contain'
     },
     socialIcon: {
         width: 24,
@@ -61,5 +62,10 @@ const styles = StyleSheet.create({
         width:72,
         height:72,
         borderRadius:10,
-      }
+      },
+    productDetail:{
+        width:300,
+        height:240,
+        borderRadius:10
+    }
 })

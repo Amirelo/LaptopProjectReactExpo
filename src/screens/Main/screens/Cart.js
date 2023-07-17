@@ -11,28 +11,46 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { priceFormat } from '../../../utils/helper'
 
 const deviceWidth = Dimensions.get('window').width;
-const Cart = () => {
-  const { onGetUserCart } = useContext(MainContext);
+const Cart = ({navigation}) => {
+  
+  const { onGetCartByEmail } = useContext(MainContext);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
 
-  const getData = async () => {
-    username = await AsyncStorage.getItem('username');
-    const cartData = await onGetUserCart(username);
-    setData(cartData.data);
+ 
 
+  const getData = async () => {
+    setIsLoading(true)
+    email = await AsyncStorage.getItem('email');
+    const cartData = await onGetCartByEmail(email);
+    setData(cartData.data);
+    setTotalPrice(0);
+    let myPrice = 0
+    if(cartData!= null){cartData.data.map(item => {
+      myPrice +=(item.productPrice * item.itemQuantity);
+    });
+
+    setTotalPrice(myPrice);
+  }
+    else{
     setTotalPrice(0)
-    cartData.data.map(item => {
-      setTotalPrice(totalPrice + (item.productPrice * item.itemQuantity))
-    })
+    }
+
+    setIsLoading(false)
   }
   useEffect(() => {
-    getData();
-  }, [])
+      getData();
+      
+   
+  },[navigation])
 
   return (
     <SafeAreaView style={customStyle.container}>
+      {isLoading==false?
+      <>
       <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false} contentContainerStyle={{}}>
+      
         <FlatList
           width={'100%'}
           height={'100%'}
@@ -54,7 +72,7 @@ const Cart = () => {
       </View>
       <CustomButton value={"Checkout"} type={`primary`} marginTop={32} />
       <CustomText />
-
+      </> : <></>}
     </SafeAreaView>
   )
 }

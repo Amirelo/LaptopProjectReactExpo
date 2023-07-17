@@ -3,9 +3,9 @@ import React from 'react'
 import CustomText from './CustomText'
 import CustomImage from './CustomImage'
 
-const ProductHorizontal = ({ imageLink, name, curPrice, oldPrice, discount,type }) => {
+const ProductHorizontal = ({ imageLink, name, curPrice, oldPrice, discount,type, onPress }) => {
     return (
-        <Pressable style={styles.container}>
+        <Pressable style={styles.container} onPress={onPress}>
             <CustomImage imageLink={imageLink} type={'productItem'} />
             <CustomText value={name} type={'prod_header'} maxLines={2} customStyles={styles.textMargin} />
             <CustomText value={curPrice} type={'prod_price'} customStyles={[styles.textMargin,styles.curPrice]} />

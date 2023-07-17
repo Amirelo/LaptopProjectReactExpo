@@ -64,6 +64,14 @@ export const getUserAddress = async(username) => {
     return res;
 }
 
+export const getAddressesByEmail = async(email) =>{
+    const data = {
+        email:email
+    }
+    const res =await axiosInstance.post('/address/get-addresses-by-email.php',data);
+    return res;
+}
+
 export const insertAddress = async(addressName,ward,district,city,status,userID) =>{
     const data = {
         addressName:addressName,
@@ -232,6 +240,14 @@ export const getUserByUsername= async(username) => {
         username:username
     }
     const res = await axiosInstance.post('/user/get-user-by-username.php',data);
+    return res;
+}
+
+export const getUserByEmail= async(email) => {
+    const data = {
+        email:email
+    }
+    const res = await axiosInstance.post('/user/get-user-by-email.php',data);
     return res;
 }
 

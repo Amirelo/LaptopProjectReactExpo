@@ -3,24 +3,8 @@ import { StyleSheet, View,FlatList } from 'react-native'
 import * as images from '../assets/images'
 import CustomText from './CustomText'
 import ProductVertical from './ProductVertical'
+import { priceFormat, discountFormat } from '../utils/helper'
 const ProductListVertical = ({ marginTop, noHeader, data }) => {
-    const priceFormat = (price) => {
-        const formatter = new Intl.NumberFormat('vi-VN', {
-            style:'currency',
-            currency:'VND'
-        });
-        return formatter.format(price);
-    }
-
-    const discountFormat = (discount) => {
-        if(discount.substring(0,1) == '%'){
-            result = discount.substring(1,3) + "% off";
-        }
-        if(discount.length == 0){
-            result = "";
-        }
-        return result;
-    }
 
     const processorFilter = (item) => {
         try{
@@ -92,6 +76,24 @@ const ProductListVertical = ({ marginTop, noHeader, data }) => {
         }
     }
 
+    const DataFilter = (item,type,pos) =>{
+        try{
+            if(data[pos]!= null && item !=null){
+            const getTbl = data[pos];
+            const item= getTbl.filter(stor => stor[`${type}ID`] == item[`${type}ID`])
+    
+            return item[0];
+            }else{
+                setTimeout(() => {
+                    DataFilter(item);
+                },1000)
+            }
+            } catch(error){
+                console.warn(error);
+                return null;
+            }
+    }
+
 
     return (
         <View style={styles.container}>
@@ -114,6 +116,7 @@ const ProductListVertical = ({ marginTop, noHeader, data }) => {
                     return <ProductVertical 
                                 imageLink={{uri:item.productImageLink}} 
                                 name={item.productName + " " + item.modelCode}
+                                
                                 curPrice={priceFormat(item.currentPrice)}
                                 oldPrice={priceFormat(item.productPrice)}
                                 discount={discountFormat(item.onSale)}

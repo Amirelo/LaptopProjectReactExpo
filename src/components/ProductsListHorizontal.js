@@ -4,9 +4,10 @@ import * as images from '../assets/images'
 import CustomText from './CustomText'
 import ProductHorizontal from './ProductHorizontal'
 import customStyle from '../assets/stylesheets/customStyle'
+import { useNavigation } from '@react-navigation/native'
 
 const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
-
+    const navigation = useNavigation()
     const sortingData = () => {
         if (data == null) {
             setTimeout(() => { sortingData }, 1000)
@@ -30,6 +31,9 @@ const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
 
     const sortedData = sortingData();
 
+    const onItemPressed = (item) => {
+        navigation.navigate("Product Details",{item:item})
+    }
 
     const priceFormat = (price) => {
         const formatter = new Intl.NumberFormat('vi-VN', {
@@ -69,6 +73,7 @@ const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
                 renderItem={({ item }) => {
                     return <ProductHorizontal
                         imageLink={{ uri: item.productImageLink }}
+                        onPress={()=>onItemPressed(item)}
                         name={item.productName + " " + item.modelCode}
                         curPrice={priceFormat(item.currentPrice)}
                         oldPrice={priceFormat(item.productPrice)}

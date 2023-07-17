@@ -5,7 +5,7 @@ import CustomImageButton from './CustomImageButton'
 import * as images from '../assets/images'
 
 //const internetImg = {uri:'https://cdn.pixabay.com/photo/2019/07/14/16/29/pen-4337524_1280.jpg'}
-const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, onChangeText,keyboardType}) => {
+const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, onChangeText,keyboardType, value}) => {
     const [showPassImg, setShowPassImg] = useState(images.ic_visibility);
     const [secure, setSecure] = useState(isSecure);
     const onPressVisibility = () => {
@@ -21,7 +21,7 @@ const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, 
             width!= null ? {width:width}: {},
             ]}>
         <CustomImage imageLink={imageLink} type={'inputIcon'}/>
-        <TextInput onChangeText={onChangeText} style={styles.inputStyle} placeholder={placeholder} keyboardType={keyboardType? keyboardType: 'default'} secureTextEntry={secure}></TextInput>
+        <TextInput onChangeText={onChangeText} style={styles.inputStyle} value={value} placeholder={placeholder} keyboardType={keyboardType? keyboardType: 'default'} secureTextEntry={secure}></TextInput>
         {type == 'password' ? 
         <CustomImageButton customStyles={styles.endIcon} imageLink={showPassImg} type={'inputIcon'} onPress={onPressVisibility}/>
         :

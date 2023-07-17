@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as images from '../../../assets/images'
@@ -15,16 +15,11 @@ const SignUp = ({navigation, route}) => {
     const [birthday, setBirthday] = useState();
     const [gender, setGender] = useState();
     const [error, setError] = useState(false);
-    const {email} = null;
-    if(route.params.email!="undefined"){
-        console.warn("Have Email")
-        email = route.params;
-    }else{
-        console.warn("undefined")
-    }
+    const {email, userData} = route.params;
      
+    const { onSignUp, onUpdateUserInfo } = useContext(UserContext);
 
-    const { onSignUp } = useContext(UserContext);
+    
 
     const onConfirmPressed = async() => {
         checkInput();
@@ -32,7 +27,12 @@ const SignUp = ({navigation, route}) => {
         if(!error){
             console.warn("Sign up");
             result = await onSignUp(username,password,email, phoneNumber,fullName,gender,birthday);
+            console.warn(result)
             if(result.response_code == 1){
+                if(userData != null){
+                    updateImgLink = await onUpdateUserInfo(userData.picture, userData.email,"IMAGELINK")
+                }
+
                 navigation.navigate("Success", {title: 'Sign Up success'})
             } else{
                 navigation.navigate("Fail", {title: 'Sign Up fail'})
@@ -50,12 +50,15 @@ const SignUp = ({navigation, route}) => {
             }
     }
 
+    useEffect(()=>{
+        userData ? setFullName(userData.name):""
+    },[])
     
     return (
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
             <SafeAreaView style={customStyle.container}>
                 <CustomInput imageLink={images.ic_person} placeholder={"Username"} onChangeText={setUsername} marginTop={103} />
-                <CustomInput imageLink={images.ic_person} placeholder={"Fullname"} onChangeText={setFullName} marginTop={8} />
+                <CustomInput imageLink={images.ic_person} placeholder={"Fullname"} value={userData ? userData.name:""} onChangeText={setFullName} marginTop={8} />
                 <CustomInput imageLink={images.ic_password} placeholder={"Password"} marginTop={8} type={'password'} onChangeText={setPassword} isSecure={true} />
                 <CustomInput imageLink={images. ic_password} placeholder={"Confirm Password"} marginTop={8} type={'password'} onChangeText={setConfirmPassword} isSecure={true} />
                 <CustomInput imageLink={images.ic_phone} placeholder={"Phone number"} onChangeText={setPhoneNumber} marginTop={8} />

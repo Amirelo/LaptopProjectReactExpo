@@ -5,7 +5,7 @@ import CustomText from './CustomText'
 
 const deviceWidth = Dimensions.get("window").width;
 const ProductVertical = ({ imageLink, marginTop, name, curPrice, oldPrice, 
-    processor,memory,screen,storage }) => {
+    processor,memory,screen,storage,onPress }) => {
 
     const dataCheck = (data,type) => {
         if(data==null){
@@ -16,7 +16,7 @@ const ProductVertical = ({ imageLink, marginTop, name, curPrice, oldPrice,
     }
 
     return (
-        <Pressable style={[styles.container, marginTop ? { marginTop: marginTop } : {}]}>
+        <Pressable onPress={onPress} style={[styles.container, marginTop ? { marginTop: marginTop } : {}]}>
             <CustomImage customStyle={styles.image} imageLink={imageLink} type={'productItem'} />
             <View style={styles.infoContainer}>
                 <CustomText value={name} type={'prod_header'} maxLines={2} customStyles={styles.textMargin} />

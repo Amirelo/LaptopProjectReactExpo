@@ -23,6 +23,7 @@ export const ic_search = require('./search.png');
 export const ic_favorite = require('./favorite_border.png');
 export const ic_notification = require('./circle_notifications.png');
 export const ic_view_list = require('./view_list.png');
+export const ic_view_module = require('./view_module.png');
 export const ic_filter  = require('./filter_list.png');
 export const ic_sort = require('./swap_vert.png');
 export const ic_more_vert = require('./more_vert.png');

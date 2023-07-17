@@ -33,10 +33,12 @@ export const getAllBrands = async() => {
     return res;
 }
 
+
 export const getAllScreens = async() =>{
     const res = await axiosInstance.get('/screen/get-all-screens.php');
     return res;
 }
+
 
 export const getAllOperatingSystems = async() =>{
     const res = await axiosInstance.get('/operatingSystem/get-all-operating-systems.php');
@@ -63,5 +65,23 @@ export const getUserCart = async(username) => {
         username:username
     }
     const res = await axiosInstance.post('/cart/get-carts-by-username.php',data);
+    return res;
+}
+
+export const insertCart = async(itemQuantity,userID,productID) => {
+    const data = {
+        itemQuantity:itemQuantity,
+        userID:userID,
+        productID:productID
+    }
+    const res = await axiosInstance.post('/cart/insert-cart-info.php',data);
+    return res;
+}
+
+export const getCartByEmail = async(email) =>{
+    const data = {
+        email:email
+    }
+    const res = await axiosInstance.post('/cart/get-carts-by-email.php',data);
     return res;
 }

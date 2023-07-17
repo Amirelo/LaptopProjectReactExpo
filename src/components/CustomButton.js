@@ -1,8 +1,9 @@
-import { Pressable, StyleSheet} from 'react-native'
+import { Dimensions, Pressable, StyleSheet} from 'react-native'
 import React from 'react'
 import CustomImage from './CustomImage';
 import CustomText from './CustomText';
 
+const deviceWidth = Dimensions.get('window').width;
 const CustomButton = ({value, type, marginTop, float, imageLink, onPress, customStyles}) => {
   return (
     <Pressable 
@@ -27,7 +28,7 @@ export default CustomButton
 
 const styles = StyleSheet.create({
     button_primary:{
-        width:'90%',
+        width:deviceWidth*0.9,
         height: 56,
         alignItems:'center',
         justifyContent:'center',

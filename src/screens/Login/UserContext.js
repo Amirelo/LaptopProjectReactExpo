@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import axiosInstance from '../../utils/axios';
 import { checkEmail, getUserByUsername, sendVerificationCode, 
     signIn, signUp, updateUserInfo,getUserAddress, 
-    getUserOrders, getUserOrderDetail, getUserCoupon, getUserCards } from './UserService';
+    getUserOrders, getUserOrderDetail, getUserCoupon, getUserCards,getAddressesByEmail, getUserByEmail } from './UserService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const UserContext = createContext();
@@ -14,22 +14,27 @@ export const UserContextProvider = (props) => {
 
     const checkSaveUser = async() =>{
         try{
-        username = await AsyncStorage.getItem('username');
+        username = await AsyncStorage.getItem('email');
         username!=null ? setIsLoggedIn(true):{}
     } catch(error){
         console.warn("On check save user error", error);
     }
     }
 
+    const onGoogleSignIn = () => {
+        setIsLoggedIn(true);
+    }
+
     const onSignIn = async (username, password) => {
         try {
             const res = await signIn(username, password);
+            console.warn(res.data)
             if (res.data.response_code == 1) {
                 setIsLoggedIn(true);
-                return true;
+                return res.data;
             } else {
                 console.log(res.data.message);
-                return false;
+                return res.data;
             }
         } catch (error) {
             console.log('On sign In error', error);
@@ -96,9 +101,31 @@ export const UserContextProvider = (props) => {
         }
     }
 
+    const onGetUserByEmail = async(email) => {
+        try{
+            const res = await getUserByEmail(email);
+            console.log("On Get User info success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get User info error", error);
+            return null;
+        }
+    }
+
     const onGetUserAddress = async(username) => {
         try{
             const res = await getUserAddress(username);
+            console.log("On Get User Address success", res.data);
+            return res.data;
+        } catch(error){
+            console.log("On Get User Address error", error);
+            return null;
+        }
+    }
+
+    const onGetAddressesByEmail = async(email) => {
+        try{
+            const res = await getAddressesByEmail(email);
             console.log("On Get User Address success", res.data);
             return res.data;
         } catch(error){
@@ -178,7 +205,8 @@ export const UserContextProvider = (props) => {
         value={{ isLoggedIn, onSignIn, onSignUp, onSignOut, onSendVerificationCode,
         onUpdateUserInfo,onGetUserAddress,insertUserAddress,updateUserAddress,
         onCheckEmail,checkSaveUser,onGetUserByUsername,onGetUserOrder,
-        onGetUserOrderDetail,onGetUserCoupon,onGetUserCards }}>
+        onGetUserOrderDetail,onGetUserCoupon,onGetUserCards, onGoogleSignIn,
+        onGetUserByEmail,onGetAddressesByEmail }}>
             {children}
         </UserContext.Provider>
     )
