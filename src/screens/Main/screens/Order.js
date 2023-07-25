@@ -8,14 +8,14 @@ import { MainContext } from '../MainContext'
 
 const Order = ({route}) => {
   const {userInfo,userOrders} = route.params;
+  console.log(userOrders);
   
 
   return (
-    <SafeAreaView style={[customStyle.container]}>
+    <SafeAreaView style={[customStyle.container,{alignItems:'center'}]}>
       <FlatList
         width={'100%'}
         height={"100%"}
-        scrollEnabled={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ gap: 8, marginBottom: 16 }}
         data={userOrders}

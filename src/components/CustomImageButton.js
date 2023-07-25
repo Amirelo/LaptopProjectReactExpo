@@ -2,12 +2,13 @@ import { Pressable, StyleSheet, Image, View } from 'react-native'
 import React from 'react'
 import CustomImage from './CustomImage'
 
-const CustomImageButton = ({ type, imageLink, onPress, customStyles, linkType }) => {
+const CustomImageButton = ({ type, imageLink, onPress, customStyles, linkType, marginTop }) => {
   return (
     <Pressable
       onPress={onPress}
       style={[
         type ? styles[`${type}`] : {},
+        marginTop!=null? {marginTop:marginTop}:{},
         customStyles
       ]} >
       <CustomImage imageLink={imageLink} linkType={linkType} customStyle={customStyles} type={type} />

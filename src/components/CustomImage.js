@@ -4,7 +4,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 const CustomImage = ({ imageLink, type, marginTop, customStyle, linkType }) => {
     return (
-        <Image source={linkType == "uri" ? { uri: imageLink } : imageLink}
+        <Image resizeMode='cover' source={linkType == "uri" ? { uri: imageLink } : imageLink}
             style={[
                 type != null ? styles[`${type}`] : {},
                 marginTop != null ? { marginTop: marginTop } : {},
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
         marginEnd: 12,
         borderTopLeftRadius: 9,
         borderBottomLeftRadius: 9,
-        resizeMode:'contain'
     },
     socialIcon: {
         width: 24,
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
     productItem: {
         width: 139,
         height: 112,
-        resizeMode: 'cover',
         marginTop: 16,
         marginHorizontal: 8,
         alignSelf: 'center',
@@ -48,7 +46,6 @@ const styles = StyleSheet.create({
     cartItem: {
         width: 120,
         height: 70,
-        resizeMode: 'cover',
         marginTop: 16,
         marginHorizontal: 8,
         alignSelf: 'center',
@@ -64,8 +61,8 @@ const styles = StyleSheet.create({
         borderRadius:10,
       },
     productDetail:{
-        width:300,
-        height:240,
-        borderRadius:10
+        width:240,
+        height:200,
+        borderRadius:10,
     }
 })

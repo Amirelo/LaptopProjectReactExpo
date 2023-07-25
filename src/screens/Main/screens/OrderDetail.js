@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { CustomButton, CustomText, ProductVertical } from '../../../components'
 import { UserContext } from '../../Login/UserContext'
 import { MainContext } from '../MainContext'
-import { discountFormat, priceFormat } from '../../../utils/helper'
+import { dataCheck, discountFormat, priceFormat } from '../../../utils/helper'
 
 const deviceWidth = Dimensions.get('window').width;
 const OrderDetail = ({ route }) => {
@@ -68,11 +68,7 @@ const OrderDetail = ({ route }) => {
                             keyExtractor={item => item.productID}
                             renderItem={({ item }) => {
                                 return <ProductVertical
-                                    imageLink={{ uri: item.productImageLink }}
-                                    name={item.productName + " " + item.modelCode}
-                                    curPrice={priceFormat(item.currentPrice)}
-                                    oldPrice={priceFormat(item.productPrice)}
-                                    discount={discountFormat(item.onSale)}
+                                    item={item}
                                 />
                             }} />
 

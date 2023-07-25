@@ -17,10 +17,12 @@ import PromoItem from "./PromoItem";
 import CardItem from "./CardItem";
 import RowItem from "./RowItem";
 import SortOption from "./SortOption";
+import ProductPressOption from "./ProductPressOption";
+import LocationOptions from "./LocationOptions";
 
 
 export {CustomText, CustomImage, CustomInput, CustomImageButton,
      CustomButton,CustomHeader, CustomBanner, ProductVertical, 
      ProductsListHorizontal,ProductListVertical, ProductHorizontal,
      CustomNotification, AccountTab, AddressItem, OrderItem,
-     PromoItem, CardItem, RowItem, SortOption}
+     PromoItem, CardItem, RowItem, SortOption, LocationOptions}

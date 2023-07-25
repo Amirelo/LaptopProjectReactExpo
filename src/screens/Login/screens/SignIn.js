@@ -12,7 +12,7 @@ import { checkEmail } from '../UserService';
 const Signin = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         androidClientId: "731408095021-aoa0uq7ab734fmuu8p4lchr00q3pmd8c.apps.googleusercontent.com",
@@ -21,7 +21,7 @@ const Signin = ({ navigation }) => {
     })
     //DuAnApp://expo-development-client/?url=https://u.expo.dev/490f9463-d5f1-4420-a95f-c7707fe80f1c?channel-name=trandang210799
 
-    const { onSignIn, checkSaveUser,onGoogleSignIn } = useContext(UserContext);
+    const { onSignIn, checkSaveUser, onGoogleSignIn } = useContext(UserContext);
     const getUserInfo = async () => {
         try {
             const respone = await fetch(
@@ -37,23 +37,23 @@ const Signin = ({ navigation }) => {
                 await AsyncStorage.setItem('email', user.email);
                 onGoogleSignIn();
             } else {
-                navigation.navigate("Sign Up", {email: user.email, userData: user })
+                navigation.navigate("Sign Up", { email: user.email, userData: user })
             }
 
         } catch (error) {
-            console.warn(error)
+            console.log(error)
         }
     }
 
-    
+
 
     useEffect(() => {
         checkSaveUser();
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         getUserInfo()
-    },[response])
+    }, [response])
 
 
     const onToForgotPasswordPress = () => {
@@ -61,14 +61,29 @@ const Signin = ({ navigation }) => {
     }
 
     const onSignInPress = async () => {
-        const result = await onSignIn(username, password);
-        if (result.response_code == 1) {
-            setError(false);
-            await AsyncStorage.setItem("email", result.data.email)
+        if (signInCheck() == true) {
+            console.warn(signInCheck())
+            const result = await onSignIn(username, password);
+            if (result.response_code == 1 && result.data.accountStatus==0) {
+                setError("");
+                await AsyncStorage.setItem("email", result.data.email)
+            }
+            else {
+                setError("Wrong username or password");
+            }
         }
-        else {
-            setError(true);
+    }
+
+    const signInCheck = () => {
+        if (username.length == 0) {
+            setError("Username cannot be empty")
+            return false
         }
+        if (password.length == 0) {
+            setError("Password cannot be empty")
+            return false
+        }
+        return true
     }
 
     const onToSignUpPress = () => {
@@ -76,7 +91,7 @@ const Signin = ({ navigation }) => {
     }
 
     const onSocialButtonPress = () => {
-        console.warn("Social button");
+        console.log("Social button");
     }
 
 
@@ -92,15 +107,15 @@ const Signin = ({ navigation }) => {
 
 
                 <CustomButton value={'Forgot password?'} type={'tertiary'} onPress={onToForgotPasswordPress} marginTop={16} float={'flex-end'} />
-                {error ?
-                    <CustomText value={"Wrong username or password"} fontSize={'normal'} textColor={"cancel"} />
+                {error != "" ?
+                    <CustomText value={error} fontSize={'normal'} textColor={"cancel"} />
                     :
                     <></>}
                 <CustomButton value={"Sign In"} type={'primary'} onPress={onSignInPress} marginTop={16} buttonbackground={"submit"} />
 
                 <CustomText value={"Or Sign In with"} fontSize={'subtitle'} marginTop={18} />
                 <CustomButton value={'Google'} type={'social'} onPress={() => promptAsync()} marginTop={16} imageLink={images.ic_google} />
-                <CustomButton value={'Apple'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_apple} />
+                {/*<CustomButton value={'Apple'} type={'social'} onPress={onSocialButtonPress} marginTop={8} imageLink={images.ic_apple} /> */}
                 <CustomButton value={"Don't have an account? Sign Up here"} onPress={onToSignUpPress} type={'tertiary'} marginTop={24} />
             </SafeAreaView>
         </ScrollView>

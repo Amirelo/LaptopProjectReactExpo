@@ -3,14 +3,20 @@ import React from 'react'
 import CustomText from './CustomText'
 import CustomButton from './CustomButton'
 
-const SortOption = () => {
+const SortOption = ({setSortOption,setSortPressed}) => {
+
+  const changeOption = (type) => {
+    setSortOption(type);
+    setSortPressed(false);
+  }
+
   return (
     <View style={styles.container}>
       <CustomText value={"Sort by"} customStyles={styles.spacing} fontWeight={'heavy'} fontSize={'title'}/>
-      <CustomButton value={"Popularity"} customStyles={styles.spacing}/>
-      <CustomButton value={"Newest"} customStyles={styles.spacing}/>
-      <CustomButton value={"Price: low to high"} customStyles={styles.spacing}/>
-      <CustomButton value={"Price: high to low"} customStyles={styles.spacing}/>
+      <CustomButton value={"Popularity"} onPress={()=>changeOption(1)} customStyles={styles.spacing}/>
+      <CustomButton value={"Newest"} onPress={()=>changeOption(2)} customStyles={styles.spacing}/>
+      <CustomButton value={"Price: low to high"} onPress={()=>changeOption(3)} customStyles={styles.spacing}/>
+      <CustomButton value={"Price: high to low"} onPress={()=>changeOption(4)} customStyles={styles.spacing}/>
     </View>
   )
 }

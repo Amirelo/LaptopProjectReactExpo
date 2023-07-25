@@ -24,6 +24,14 @@ export const dataCheck = (data,type) => {
     }
 }
 
+export const dataParentCheck = (data) => {
+    if(data==null){
+        setTimeout(() => {dataCheck},1000)
+    } else{
+        return data;
+    }
+}
+
 export const promoDetail = (percentOff, maxEffect) => {
     let result = percentOff.slice(1,3)+percentOff.slice(0,1)+" off all laptop, maximum " + priceFormat(maxEffect);
     return result;

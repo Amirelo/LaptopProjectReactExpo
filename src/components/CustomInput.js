@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import CustomImage from './CustomImage'
 import CustomImageButton from './CustomImageButton'
 import * as images from '../assets/images'
+import {FontAwesome} from '@expo/vector-icons';
 
 //const internetImg = {uri:'https://cdn.pixabay.com/photo/2019/07/14/16/29/pen-4337524_1280.jpg'}
-const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, onChangeText,keyboardType, value}) => {
+const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, onChangeText,keyboardType, value,customStyle}) => {
     const [showPassImg, setShowPassImg] = useState(images.ic_visibility);
     const [secure, setSecure] = useState(isSecure);
     const onPressVisibility = () => {
@@ -19,6 +20,7 @@ const CustomInput = ({placeholder, imageLink, marginTop, isSecure, type, width, 
             styles.container,
             marginTop!=null ? {marginTop:marginTop}:{},
             width!= null ? {width:width}: {},
+            customStyle!= null ? customStyle:{}
             ]}>
         <CustomImage imageLink={imageLink} type={'inputIcon'}/>
         <TextInput onChangeText={onChangeText} style={styles.inputStyle} value={value} placeholder={placeholder} keyboardType={keyboardType? keyboardType: 'default'} secureTextEntry={secure}></TextInput>
@@ -48,6 +50,6 @@ const styles = StyleSheet.create({
         borderColor:'#EBF0FF'
     },
     endIcon:{
-        marginEnd:12
+        marginEnd:24
     }
 })

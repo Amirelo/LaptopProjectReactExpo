@@ -5,6 +5,8 @@ import CustomText from './CustomText'
 import ProductHorizontal from './ProductHorizontal'
 import customStyle from '../assets/stylesheets/customStyle'
 import { useNavigation } from '@react-navigation/native'
+import { discountFormat, priceFormat } from '../utils/helper'
+import CustomButton from './CustomButton'
 
 const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
     const navigation = useNavigation()
@@ -35,29 +37,18 @@ const ProductsListHorizontal = ({ marginTop, data, type, title }) => {
         navigation.navigate("Product Details",{item:item})
     }
 
-    const priceFormat = (price) => {
-        const formatter = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND'
-        });
-        return formatter.format(price);
+    const onSeeMorePressed = () => {
+        navigation.navigate("Explore")
     }
 
-    const discountFormat = (discount) => {
-        if (discount.substring(0, 1) == '%') {
-            result = discount.substring(1, 3) + "% off";
-        }
-        if (discount.length == 0) {
-            result = "";
-        }
-        return result;
-    }
+    
+
 
     return (
         <View style={styles.container}>
             <View style={[styles.productHeaderContainer, marginTop != null ? { marginTop: marginTop } : {}]}>
                 <CustomText value={title} type={'title1'} />
-                <CustomText textDecor={"underline"} value={"See more"} type={'subtitle'} />
+                <CustomButton onPress={onSeeMorePressed} textDecor={"underline"} value={"See more"} type={'subtitle'} />
 
             </View>
             <FlatList

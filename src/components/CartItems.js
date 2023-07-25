@@ -1,36 +1,71 @@
 import { Pressable, StyleSheet, Text, View, Dimensions } from 'react-native'
-import React, { memo } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import CustomImage from './CustomImage'
 import CustomText from './CustomText'
 import CustomButton from './CustomButton';
 import * as images from '../assets/images'
 import CustomImageButton from './CustomImageButton';
 import { priceFormat } from '../utils/helper';
+import { MainContext } from '../screens/Main/MainContext';
+import { useNavigation } from '@react-navigation/native';
 
 const deviceWidth = Dimensions.get("window").width;
-const CartItems = ({ marginTop, imageLink, productName, productPrice }) => {
-    const dataCheck = (data, type) => {
-        if (data == null) {
-            setTimeout(() => { dataCheck }, 1000)
-        } else {
-            return data[type];
+const CartItems = ({ marginTop, item, setTotalPrice,onActionOptionPressed }) => {
+    const { onUpdateCartQuantity,onGetProductByID } = useContext(MainContext);
+    const [curProduct,setCurProduct] = useState();
+
+    const [quantity, setQuantity] = useState(item.itemQuantity);
+
+    const getData = async() => {
+        const result = await onGetProductByID(item.productID);
+        if(result.response_code == 1){
+            setCurProduct(result.data[0]);
         }
     }
 
+    const onAddQuantityPressed = async() => {
+        if(quantity<curProduct.productQuantity){
+            const result = await onUpdateCartQuantity(item.cartID, 1);
+            if(result.response_code == 1){
+            setQuantity(quantity+1)
+            setTotalPrice((price) => price + item.productPrice)
+            
+            }
+        } else{
+            console.log("Not enough quantity")
+        }
+    }
+
+    const onSubtractQuantityPressed = async() => {
+        if(quantity>1){
+            const result = await onUpdateCartQuantity(item.cartID, -1);
+            if(result.response_code == 1){
+            setQuantity(quantity-1)
+            setTotalPrice((price) => price - item.productPrice)
+            }
+        } else{
+            console.log("Fail")
+        }
+    }
+    
+    useEffect(()=>{
+        getData();
+    },[])
+
     return (
         <Pressable style={[styles.container, marginTop ? { marginTop: marginTop } : {}]}>
-            <CustomImage customStyle={styles.image} imageLink={{ uri: imageLink }} type={'cartItem'} />
+            <CustomImage customStyle={styles.image} imageLink={{ uri: item.productImageLink }} type={'cartItem'} />
             <View style={styles.infoContainer}>
                 <View style={[styles.rowInfo]}>
-                    <CustomText value={productName} type={'prod_header'} maxLines={2} customStyles={[styles.textMargin,{flex:1}]} />
-                    <CustomImageButton imageLink={images.ic_more_vert} type={'inputIcon'} />
+                    <CustomText value={item.productName} type={'prod_header'} maxLines={2} marginTop={8} customStyles={[{width:'76%'}]} />
+                    <CustomImageButton imageLink={images.ic_more_vert} onPress={()=>onActionOptionPressed(item)} type={'inputIcon'} marginTop={8} customStyles={[]}/>
                 </View>
                 <View style={[styles.rowInfo,{marginTop:16}]}>
-                    <CustomText value={priceFormat(productPrice)} type={'prod_price_nobg'} maxLines={2} customStyles={styles.textMargin} />
+                    <CustomText value={priceFormat(item.productPrice * quantity)} type={'prod_price_nobg'} maxLines={2} customStyles={styles.textMargin} />
                     <View style={styles.rowInfo}>
-                    <CustomImageButton imageLink={images.ic_minus} type={'cartQuantityIcon'} />
-                    <CustomText value={1}/>
-                    <CustomImageButton imageLink={images.ic_add} type={'cartQuantityIcon'} />
+                    <CustomImageButton onPress={onSubtractQuantityPressed} imageLink={images.ic_minus} type={'cartQuantityIcon'} />
+                    <CustomText value={quantity}/>
+                    <CustomImageButton onPress={onAddQuantityPressed} imageLink={images.ic_add} type={'cartQuantityIcon'} />
                     </View>
                 </View>
 
@@ -72,7 +107,7 @@ const styles = StyleSheet.create({
     },
     rowInfo: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
+        flex:1,
     }
 })

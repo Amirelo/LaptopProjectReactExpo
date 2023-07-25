@@ -12,8 +12,11 @@ import OrderDetail from "./OrderDetail";
 import CardScreen from "./CardScreen";
 import ProductDetailScreen from "./ProductDetailScreen";
 import CartRecipientScreen from "./CartRecipientScreen";
+import CheckOutScreen from "./CheckOutScreen";
+import ReceiptScreen from "./ReceiptScreen";
+import AdvanceSearchScreen from "./AdvanceSearchScreen";
 
 export {Home, Explore, Cart, Account, Favorite, 
     NotificationScreen, Profile, UpdateInfo,
     ShippingAddress,Order,OrderDetail,CardScreen,ProductDetailScreen,
-    CartRecipientScreen}
+    CartRecipientScreen, CheckOutScreen,ReceiptScreen, AdvanceSearchScreen}

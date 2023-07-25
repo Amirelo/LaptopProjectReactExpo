@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     rowContainer:{
         width:'100%',
         flexDirection:'row',
-        flex:1
     },
     button1_first:{
         flex:1

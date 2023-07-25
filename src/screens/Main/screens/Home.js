@@ -10,7 +10,18 @@ const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 const Home = ({navigation}) => {
-    const {listProducts, listProcessors, listMemories, listScreens,listStorages} = useContext(MainContext);
+    const [listProducts,setListProducts] = useState([]);
+    const {onGetAllProduct} = useContext(MainContext);
+
+    const initData = async() => {
+        const prosRes = await onGetAllProduct();
+        setListProducts(prosRes.data);
+    }
+    
+    useEffect(()=>{
+        initData();
+    },[])
+
 
     const onToFavoritePress = () =>{
         navigation.navigate('Favorite')
@@ -34,7 +45,7 @@ const Home = ({navigation}) => {
                     
                     <ProductsListHorizontal title={"New arrivals"}  type={"NEW"} marginTop={24} data={listProducts}/>
 
-                    <ProductListVertical marginTop={24} data={[listProducts, listProcessors,listMemories,listScreens, listStorages]}/>
+                    <ProductListVertical marginTop={24} data={listProducts} />
                 </View>
             </ScrollView>
         </SafeAreaView>

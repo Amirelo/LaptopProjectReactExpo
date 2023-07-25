@@ -48,5 +48,13 @@ export default CustomStyles = StyleSheet.create({
         marginTop: 8,
         marginHorizontal: 8
     },
-   
+    unselectable: {
+        backgroundColor: '#00000020',
+        position: 'absolute',
+        flex: 1,
+        width: '100%',
+        height: deviceHeight,
+        alignItems: 'center',
+        paddingTop: '40%'
+      }
 })

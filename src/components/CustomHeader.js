@@ -6,7 +6,7 @@ import CustomImageButton from './CustomImageButton'
 import CustomImage from './CustomImage'
 import CustomText from './CustomText'
 
-const CustomHeader = ({ type, onFavoritePress, onNotificationPress, onSearchText, onViewListPressed,onSortPressed }) => {
+const CustomHeader = ({ type, onFavoritePress, onNotificationPress, onSearchText, onViewListPressed,onSortPressed, sortType }) => {
   const [viewListPressed, setViewListPressed] = useState(true);
   return (
     <>
@@ -26,7 +26,7 @@ const CustomHeader = ({ type, onFavoritePress, onNotificationPress, onSearchText
             </Pressable>
             <Pressable style={styles.itemContainer} onPress={onSortPressed}>
               <CustomImage imageLink={images.ic_sort} type={'searchBarIcon'} />
-              <CustomText value={"Popular"} type={'subtitle'} />
+              <CustomText value={sortType} type={'subtitle'} />
             </Pressable>
             <Pressable onPress={onViewListPressed}>
               {viewListPressed?

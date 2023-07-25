@@ -21,6 +21,7 @@ export const ic_success = require('./successaction.png');
 export const ic_deactivate = require('./deactivatedaction.png');
 export const ic_search = require('./search.png');
 export const ic_favorite = require('./favorite_border.png');
+export const ic_favorite_selected = require('./favorite_selected.png');
 export const ic_notification = require('./circle_notifications.png');
 export const ic_view_list = require('./view_list.png');
 export const ic_view_module = require('./view_module.png');
