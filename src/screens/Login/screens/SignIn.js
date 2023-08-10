@@ -64,7 +64,7 @@ const Signin = ({ navigation }) => {
         if (signInCheck() == true) {
             console.warn(signInCheck())
             const result = await onSignIn(username, password);
-            if (result.response_code == 1 && result.data.accountStatus==0) {
+            if (result.response_code == 1 && result.data.accountStatus!=0) {
                 setError("");
                 await AsyncStorage.setItem("email", result.data.email)
             }
